@@ -30,6 +30,7 @@ public class Cookie {
 		return value;
 	}
 	public int getMaxAge() {
+		
 		return maxAge;
 	}
 	
