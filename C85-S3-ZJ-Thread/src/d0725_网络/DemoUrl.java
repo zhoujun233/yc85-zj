@@ -5,11 +5,9 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-
 public class DemoUrl {
 	public static void main(String[] args) throws IOException {
 		URL url=new URL("http://47.92.134.75:8080/C85-S2-TTSX/index.html");
-		
 		System.out.println(url.getProtocol());//获取url的协议
 		System.out.println(url.getPort());//获取url的端口
 		System.out.println(url.getHost());//获取url的域名

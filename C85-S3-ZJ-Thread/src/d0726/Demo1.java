@@ -23,7 +23,6 @@ import java.net.URLConnection;
  * 	  3. 字节流的 skip() 跳过N个字节
  * 3. 多线程分块下载
  */
- 
 public class Demo1 {
 	// 正在下载块
 	private int downNums = 0;

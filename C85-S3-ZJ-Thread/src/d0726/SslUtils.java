@@ -24,7 +24,6 @@ public class SslUtils {
         public X509Certificate[] getAcceptedIssuers() {  
             return null;  
         }  
-   
         public boolean isServerTrusted(X509Certificate[] certs) {  
             return true;  
         }  
