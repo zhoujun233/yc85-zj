@@ -9,6 +9,7 @@ public class CookieServlet extends HttpServlet {
 		  cookie=new Cookie("sex","18");
 		  response.addCookie(cookie);
 		  response.getwWriter().append("cookie");
+		  System.out.println("试一试");
 	}
 
 }
