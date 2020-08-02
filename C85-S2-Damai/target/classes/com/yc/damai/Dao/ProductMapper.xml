@@ -23,4 +23,19 @@
     delete from dm_category where id=#{id}
   </delete>
   
+  <select id="selectproduct" resultType="com.yc.damai.been.DmProduct">
+    select * from dm_product where id=#{id}
+  </select>
+  
+  <insert id="insertproduct" >
+    insert into dm_product values(null,#{pname},#{marketPrice},#{shopPrice},#{image},#{pdesc},#{isHot},now(),#{cid})
+  </insert>
+  
+  <update id="updateproduct" >
+    update dm_product set pname=#{pname},market_price=#{marketPrice},shop_price=#{shopPrice} where id=#{id}
+  </update>
+  
+  <delete id="deleteproduct" >
+    delete from dm_product  where id=#{id}
+  </delete>
 </mapper>
