@@ -11,7 +11,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.yc.damai.Dao.DmCategroyMapper;
+import com.yc.damai.Dao.DmOrderitemMapper;
+import com.yc.damai.Dao.DmProductMapper;
 import com.yc.damai.been.DmCategory;
+import com.yc.damai.been.DmOrderitem;
 import com.yc.damai.been.DmProduct;
 
 public class DmProductMapperTest {
@@ -36,18 +40,28 @@ public class DmProductMapperTest {
 
 	// 测试方法加注解
 
-	@Test public void test1() throws IOException { List<DmProduct> list =
-	  session.selectList("com.yc.damai.Dao.DmProductMapper.selectAll"); 
-	// true 期望值 list.size()>0实际值
-	  Assert.assertEquals(true, list.size() > 0); }
+	@Test
+	public void test1() throws IOException {
+		List<DmProduct> list = session.selectList("com.yc.damai.Dao.DmProductMapper.selectAll");
+		// true 期望值 list.size()>0实际值
+		Assert.assertEquals(true, list.size() > 0);
+
+		/*
+		 * for (DmProduct dp : list) { System.out.println(dp); }
+		 */
+
+	}
 
 	@Test
 	public void test2() throws IOException {
 		DmCategory dc = new DmCategory();
 		dc.setCname("测试分类");
 		dc.setPid(1);
-		session.insert("com.yc.damai.Dao.DmProductMapper.insert", dc);
+		DmCategroyMapper mapper = session.getMapper(DmCategroyMapper.class);
+		mapper.insert(dc);
+		/* session.insert("com.yc.damai.Dao.DmProductMapper.insert", dc); */
 		session.commit();
+		session.close();
 	}
 
 	@Test
@@ -55,9 +69,12 @@ public class DmProductMapperTest {
 		DmCategory dc = new DmCategory();
 		dc.setCname("修改后的测试分类");
 		dc.setPid(1);
-		dc.setId(44);
-		session.update("com.yc.damai.Dao.DmProductMapper.update", dc);
+		dc.setId(61);
+		/* session.update("com.yc.damai.Dao.DmProductMapper.update", dc); */
+		DmCategroyMapper mapper = session.getMapper(DmCategroyMapper.class);
+		mapper.update(dc);
 		session.commit();
+		session.close();
 	}
 
 	@Test
@@ -66,10 +83,49 @@ public class DmProductMapperTest {
 		dc.setCname("修改后的测试分类");
 		dc.setPid(1);
 		dc.setId(44);
-		session.delete("com.yc.damai.Dao.DmProductMapper.delete", dc);
+		/* session.delete("com.yc.damai.Dao.DmProductMapper.delete", dc); */
+		DmCategroyMapper mapper = session.getMapper(DmCategroyMapper.class);
+		mapper.delete(61);
 		session.commit();
+		session.close();
+	}
+	
+	@Test
+	public void test5() throws IOException {
+		/**
+		 * 关联查询   订单详情表与商品表
+		 */
+		/*
+		 * DmOrderitemMapper dom=session.getMapper(DmOrderitemMapper.class);
+		 * DmProductMapper dpm=session.getMapper(DmProductMapper.class); DmOrderitem
+		 * doi=dom.selectbyId(59); DmProduct dp=dpm.selectbyId(doi.getPid());
+		 */
+		DmOrderitemMapper dom=session.getMapper(DmOrderitemMapper.class);
+		DmOrderitem doi=dom.selectbyId(59);
+		DmProduct dp=doi.getDmPorduct();
+		System.out.println(dp);
+		
+		session.close();
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Test
 	public void insert() throws IOException {
 		DmProduct dp = new DmProduct();
@@ -84,13 +140,7 @@ public class DmProductMapperTest {
 		session.commit();
 	}
 
-	@Test
-	public void queryid() throws IOException {
-		DmProduct dp = new DmProduct();
-		dp.setId(72);
-		List<DmProduct> list = session.selectList("com.yc.damai.Dao.DmProductMapper.selectproduct", dp);
-		Assert.assertEquals(true, list.size() == 1);
-	}
+	
 
 	@Test
 	public void update() throws IOException {

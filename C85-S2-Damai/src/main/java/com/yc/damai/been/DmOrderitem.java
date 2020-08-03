@@ -10,8 +10,19 @@ public class DmOrderitem {
     private Integer pid;
 
     private Integer oid;
+    
+    private DmProduct dmPorduct;
 
-    public Integer getId() {
+    
+    public DmProduct getDmPorduct() {
+		return dmPorduct;
+	}
+
+	public void setDmPorduct(DmProduct dmPorduct) {
+		this.dmPorduct = dmPorduct;
+	}
+
+	public Integer getId() {
         return id;
     }
 

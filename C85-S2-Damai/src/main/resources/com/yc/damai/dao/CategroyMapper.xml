@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 当前接口名 -->
+<mapper namespace="com.yc.damai.Dao.DmCategroyMapper">
+ <!-- id是select标签的唯一标识
+  resultType 是映射的实体类的类型
+  -->
+  
+  <insert id="insert" >
+    insert into dm_category values(null,#{cname},#{pid})
+  </insert>
+  
+  <update id="update" >
+    update dm_category set cname=#{cname},pid=#{pid} where id=#{id}
+  </update>
+  
+  <delete id="delete" >
+    delete from dm_category where id=#{id}
+  </delete>
+  
+ 
+</mapper>
