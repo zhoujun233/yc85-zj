@@ -216,6 +216,41 @@ public class DmProductMapperTest {
 	
 	
 	
+	@Test
+	public void insert() throws IOException {
+		DmProduct dp = new DmProduct();
+		dp.setPname("测试");
+		dp.setMarketPrice(250.0);
+		dp.setShopPrice(125.0);
+		dp.setImage("xxxxxx");
+		dp.setPdesc("村上春树");
+		dp.setIsHot(1);
+		dp.setCid(1);
+		session.insert("com.yc.damai.Dao.DmProductMapper.insertproduct", dp);
+		session.commit();
+	}
+	@Test
+	public void update() throws IOException {
+		DmProduct dp = new DmProduct();
+		dp.setPname("测试");
+		dp.setMarketPrice(110.0);
+		dp.setShopPrice(125.0);
+		dp.setId(73);
+		session.update("com.yc.damai.Dao.DmProductMapper.updateproduct", dp);
+		session.commit();
+	}
+
+	@Test
+	public void delete() throws IOException {
+		DmProduct dp = new DmProduct();
+		dp.setId(73);
+		session.delete("com.yc.damai.Dao.DmProductMapper.deleteproduct", dp);
+		session.commit();
+	}
+	
+	
+	
+	
 	
 	
 
