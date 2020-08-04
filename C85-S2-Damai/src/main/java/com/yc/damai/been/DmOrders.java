@@ -1,6 +1,7 @@
 package com.yc.damai.been;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class DmOrders {
     private Integer id;
@@ -14,8 +15,18 @@ public class DmOrders {
     private Integer uid;
 
     private Integer aid;
+    
+   private List<DmOrderitem> list;
 
-    public Integer getId() {
+    public List<DmOrderitem> getList() {
+	return list;
+}
+
+public void setList(List<DmOrderitem> list) {
+	this.list = list;
+}
+
+	public Integer getId() {
         return id;
     }
 

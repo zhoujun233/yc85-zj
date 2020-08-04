@@ -2,40 +2,89 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <!-- 当前接口名 -->
+<!-- 当前接口名 -->
 <mapper namespace="com.yc.damai.Dao.DmProductMapper">
- <!-- id是select标签的唯一标识
-  resultType 是映射的实体类的类型
-  -->
-  <select id="selectAll" resultType="com.yc.damai.been.DmProduct">
-    select * from dm_product
-  </select>
-  
-  <insert id="insert" >
-    insert into dm_category values(null,#{cname},#{pid})
-  </insert>
-  
-  <update id="update" >
-    update dm_category set cname=#{cname},pid=#{pid} where id=#{id}
-  </update>
-  
-  <delete id="delete" >
-    delete from dm_category where id=#{id}
-  </delete>
-  
-  <select id="selectproduct" resultType="com.yc.damai.been.DmProduct">
-    select * from dm_product where id=#{id}
-  </select>
-  
-  <insert id="insertproduct" >
-    insert into dm_product values(null,#{pname},#{marketPrice},#{shopPrice},#{image},#{pdesc},#{isHot},now(),#{cid})
-  </insert>
-  
-  <update id="updateproduct" >
-    update dm_product set pname=#{pname},market_price=#{marketPrice},shop_price=#{shopPrice} where id=#{id}
-  </update>
-  
-  <delete id="deleteproduct" >
-    delete from dm_product  where id=#{id}
-  </delete>
+	<!-- 自定义字段映射 -->
+	<resultMap type="com.yc.damai.been.DmProduct" id="rmdp">
+		<!-- id永远定义主键映射关系 主键在mybatis中有特殊作用 -->
+		<id column="id" property="id" />
+		<!-- result永远定义非主键映射关系 -->
+		<result column="market_price" property="marketPrice" />
+		<result column="shop_price" property="shopPrice" />
+		<result column="is_hot" property="isHot" />
+	</resultMap>
+
+	<!-- id是select标签的唯一标识 resultType 是映射的实体类的类型 -->
+
+	<select id="selectAll" resultMap="rmdp">
+		select * from dm_product
+	</select>
+
+	<select id="selectbyId" resultMap="rmdp">
+		select * from dm_product where
+		id=#{id}
+	</select>
+	<!-- 组合查询 -->
+	<select id="selectbyObj" resultMap="rmdp">
+		select * from dm_product
+		<where>
+			<if test="pname!=null">
+				and pname like concat('%',#{pname},'%')
+			</if>
+			<if test="pdesc!=null">
+				and pdesc like concat('%',#{pdesc},'%')
+			</if>
+			<choose>
+				<when test="isHot==null">
+					and is_hot is null
+				</when>
+				<when test="isHot!=null">
+					and is_hot is not null
+				</when>
+				<otherwise>
+					and is_hot =#{isHot}
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	<select id="selectBycids" resultMap="rmdp">
+		select * from dm_product where
+		<foreach collection="cids" item="cid" open="cid in ("
+			separator="," close=")">
+			#{cid}
+		</foreach>
+	</select>
+
+	<update id="update">
+		update dm_product
+		<set>
+			<if test="pname!=null">
+				pname=#{pname},
+			</if>
+			<if test="marketPrice!=null">
+				market_price=#{marketPrice},
+			</if>
+			<if test="shopPrice!=null">
+				shop_price=#{shopPrice},
+			</if>
+			<if test="image">
+				image=#{image},
+			</if>
+			<if test="pdesc!=null">
+				pdesc=#{pdesc},
+			</if>
+			<if test="isHot!=null">
+				is_hot=#{isHot},
+			</if>
+			<if test="createtime!=null">
+				createtime=#{createtime},
+			</if>
+			<if test="cid!=null">
+				cid=#{cid},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+
 </mapper>

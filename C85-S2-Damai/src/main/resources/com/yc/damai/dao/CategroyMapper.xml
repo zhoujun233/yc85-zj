@@ -4,9 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 当前接口名 -->
 <mapper namespace="com.yc.damai.Dao.DmCategroyMapper">
- <!-- id是select标签的唯一标识
-  resultType 是映射的实体类的类型
-  -->
+ 
+ <!-- fetchType="lazy" 惰性加载  延迟加载 -->
+  <resultMap type="com.yc.damai.been.DmCategory" id="rmdc">
+  <collection property="listCategroy" column="id"
+  select="selectChildren" fetchType="lazy"
+  ></collection>
+  </resultMap>
+  
+  <select id="selectChildren"  resultType="com.yc.damai.been.DmCategory">
+  select * from dm_category where pid=#{id}
+  </select>
+  
+  <select id="selectAll" resultMap="rmdc">
+  select * from dm_category 
+    </select>
   
   <insert id="insert" >
     insert into dm_category values(null,#{cname},#{pid})

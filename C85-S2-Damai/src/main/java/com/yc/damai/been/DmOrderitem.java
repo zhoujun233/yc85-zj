@@ -1,5 +1,7 @@
 package com.yc.damai.been;
 
+import java.util.List;
+
 public class DmOrderitem {
     private Integer id;
 
@@ -12,9 +14,9 @@ public class DmOrderitem {
     private Integer oid;
     
     private DmProduct dmPorduct;
-
     
-    public DmProduct getDmPorduct() {
+    
+	public DmProduct getDmPorduct() {
 		return dmPorduct;
 	}
 

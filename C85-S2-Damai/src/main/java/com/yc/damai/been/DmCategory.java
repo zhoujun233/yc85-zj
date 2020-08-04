@@ -1,13 +1,26 @@
 package com.yc.damai.been;
 
+import java.util.List;
+
 public class DmCategory {
     private Integer id;
 
     private String cname;
 
     private Integer pid;
+    
+    private List<DmCategory> listCategroy;
 
-    public Integer getId() {
+    
+    public List<DmCategory> getListCategroy() {
+		return listCategroy;
+	}
+
+	public void setListCategroy(List<DmCategory> listCategroy) {
+		this.listCategroy = listCategroy;
+	}
+
+	public Integer getId() {
         return id;
     }
 

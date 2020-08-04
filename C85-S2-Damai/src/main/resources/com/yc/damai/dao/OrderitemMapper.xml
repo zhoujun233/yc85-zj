@@ -14,11 +14,14 @@
 	<select id="selectAll"
 		resultType="com.yc.damai.been.DmOrderitem">
 		select * from dm_orderitem
+		where oid=#{oid}
 	</select>
 
 	<select id="selectbyId" resultMap="rmdo">
 		select * from dm_orderitem
 		where id=#{id}
 	</select>
+
+
 
 </mapper>

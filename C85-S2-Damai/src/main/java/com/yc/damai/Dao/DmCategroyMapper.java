@@ -9,6 +9,8 @@ public interface DmCategroyMapper {
 	
 	List<DmCategory> selectAll();
 	
+	List<DmCategory> selectChildren();
+	
 	int insert(DmCategory dc);
 	
 	int update(DmCategory dc);

@@ -15,28 +15,76 @@
 	</resultMap>
 
 	<!-- id是select标签的唯一标识 resultType 是映射的实体类的类型 -->
-	
+
 	<select id="selectAll" resultMap="rmdp">
 		select * from dm_product
 	</select>
 
-	<select id="selectbyId"
-		resultMap="rmdp">
-		select * from dm_product where id=#{id}
+	<select id="selectbyId" resultMap="rmdp">
+		select * from dm_product where
+		id=#{id}
+	</select>
+	<!-- 组合查询 -->
+	<select id="selectbyObj" resultMap="rmdp">
+		select * from dm_product
+		<where>
+			<if test="pname!=null">
+				and pname like concat('%',#{pname},'%')
+			</if>
+			<if test="pdesc!=null">
+				and pdesc like concat('%',#{pdesc},'%')
+			</if>
+			<choose>
+				<when test="isHot==null">
+					and is_hot is null
+				</when>
+				<when test="isHot!=null">
+					and is_hot is not null
+				</when>
+				<otherwise>
+					and is_hot =#{isHot}
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	<select id="selectBycids" resultMap="rmdp">
+		select * from dm_product where
+		<foreach collection="cids" item="cid" open="cid in ("
+			separator="," close=")">
+			#{cid}
+		</foreach>
 	</select>
 
-	<insert id="insertproduct">
-		insert into dm_product
-		values(null,#{pname},#{marketPrice},#{shopPrice},#{image},#{pdesc},#{isHot},now(),#{cid})
-	</insert>
-
-	<update id="updateproduct">
-		update dm_product set
-		pname=#{pname},market_price=#{marketPrice},shop_price=#{shopPrice}
+	<update id="update">
+		update dm_product
+		<set>
+			<if test="pname!=null">
+				pname=#{pname},
+			</if>
+			<if test="marketPrice!=null">
+				market_price=#{marketPrice},
+			</if>
+			<if test="shopPrice!=null">
+				shop_price=#{shopPrice},
+			</if>
+			<if test="image">
+				image=#{image},
+			</if>
+			<if test="pdesc!=null">
+				pdesc=#{pdesc},
+			</if>
+			<if test="isHot!=null">
+				is_hot=#{isHot},
+			</if>
+			<if test="createtime!=null">
+				createtime=#{createtime},
+			</if>
+			<if test="cid!=null">
+				cid=#{cid},
+			</if>
+		</set>
 		where id=#{id}
 	</update>
 
-	<delete id="deleteproduct">
-		delete from dm_product where id=#{id}
-	</delete>
+
 </mapper>

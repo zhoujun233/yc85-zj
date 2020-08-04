@@ -12,10 +12,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.yc.damai.Dao.DmCategroyMapper;
+import com.yc.damai.Dao.DmOrderMapper;
 import com.yc.damai.Dao.DmOrderitemMapper;
 import com.yc.damai.Dao.DmProductMapper;
 import com.yc.damai.been.DmCategory;
 import com.yc.damai.been.DmOrderitem;
+import com.yc.damai.been.DmOrders;
 import com.yc.damai.been.DmProduct;
 
 public class DmProductMapperTest {
@@ -107,58 +109,114 @@ public class DmProductMapperTest {
 		
 		session.close();
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	public void test6() throws IOException {
+			/**
+			 * 一对多关联	
+			 */
+		DmOrderMapper dom=session.getMapper(DmOrderMapper.class);
+		DmOrders doi=dom.selectbyId(69);
+		List<DmOrderitem> dos=doi.getList();
+		System.out.println(dos);
+		session.close();
+	}
 	
 	@Test
-	public void insert() throws IOException {
-		DmProduct dp = new DmProduct();
-		dp.setPname("测试");
-		dp.setMarketPrice(250.0);
-		dp.setShopPrice(125.0);
-		dp.setImage("xxxxxx");
-		dp.setPdesc("村上春树");
+	public void test7() throws IOException {
+			/**
+			 * 一对多关联	
+			 */
+		DmCategroyMapper mapper=session.getMapper(DmCategroyMapper.class);
+		
+		List<DmCategory> dclist=mapper.selectAll();
+		System.out.println("=======1========");
+		DmCategory dc=dclist.get(1);
+		System.out.println("========2=======");
+		Assert.assertEquals("鞋靴箱包", dc.getCname());
+		System.out.println("=======3========");
+		Assert.assertEquals(6, dc.getListCategroy().size());
+		System.out.println("=======4========");
+	}
+	
+	@Test
+	public void test8() throws IOException {
+			/**
+			 * 组合查询
+			 */
+		DmProductMapper mapper=session.getMapper(DmProductMapper.class);
+		DmProduct dp=new DmProduct();
+		System.out.println("======1========");
+		mapper.selectbyObj(dp);
+		System.out.println("=======2=======");
+		mapper.selectbyObj(null);
+		System.out.println("=======3=======");
+		dp.setPname("测试名字");
+		mapper.selectbyObj(dp);
+		System.out.println("=======4=======");
+		dp.setPdesc("测试描述");
+		mapper.selectbyObj(dp);
+		System.out.println("========5======");
+		dp.setIsHot(-1);
+		mapper.selectbyObj(dp);
+		System.out.println("=======6=======");
 		dp.setIsHot(1);
-		dp.setCid(1);
-		session.insert("com.yc.damai.Dao.DmProductMapper.insertproduct", dp);
-		session.commit();
+		mapper.selectbyObj(dp);
+		System.out.println("=======7======");
+		dp.setPname("韩版");
+		dp.setPdesc("双11");
+		dp.setIsHot(1);
+		mapper.selectbyObj(dp);
+		
 	}
-
 	
-
 	@Test
-	public void update() throws IOException {
-		DmProduct dp = new DmProduct();
-		dp.setPname("测试");
-		dp.setMarketPrice(110.0);
-		dp.setShopPrice(125.0);
-		dp.setId(73);
-		session.update("com.yc.damai.Dao.DmProductMapper.updateproduct", dp);
-		session.commit();
+	public void test9() throws IOException {
+			/**
+			 * 组合查询
+			 */
+		DmProductMapper mapper=session.getMapper(DmProductMapper.class);
+	    int [] cids= {1,2,3}	;
+	    System.out.println(mapper.selectBycids(cids));
 	}
-
+	
 	@Test
-	public void delete() throws IOException {
-		DmProduct dp = new DmProduct();
-		dp.setId(73);
-		session.delete("com.yc.damai.Dao.DmProductMapper.deleteproduct", dp);
-		session.commit();
+	public void test10() throws IOException {
+			/**
+			 * update动态SQL
+			 * 
+			 */
+		DmProductMapper mapper=session.getMapper(DmProductMapper.class);
+		DmProduct dp=new DmProduct();
+		dp.setPname("韩版");
+		dp.setMarketPrice(555.0);
+		dp.setId(1);
+		mapper.update(dp);
+		//从数据库中查找数据  验证
+		DmProduct dpsp=mapper.selectbyId(1);
+		
+	   /**
+	    * 1.在update之前将所有数据查询出来设置，再修改
+	    * 缺点  
+	    * 每次修改都是更新所有字段
+	    * 2.用  set if 语句  
+	    * 缺点  
+	    * 无法将指定字段设置为null
+	    */
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
