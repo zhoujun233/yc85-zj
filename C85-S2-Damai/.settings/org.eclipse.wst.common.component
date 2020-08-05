@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <property name="context-root" value="C85-S2-Damai"/>
         <property name="java-output-path" value="/C85-S2-Damai/target/classes"/>
+        <property name="context-root" value="C85-S2-mavon-Damai"/>
     </wb-module>
 </project-modules>

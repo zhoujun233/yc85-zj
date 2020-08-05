@@ -22,6 +22,7 @@ import com.yc.damai.been.DmProduct;
 
 public class DmProductMapperTest {
 	private SqlSession session;
+	private SqlSession session2;
 	{
 		// mybatis配置文件
 		String resource = "mybatis.xml";
@@ -33,6 +34,7 @@ public class DmProductMapperTest {
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			// 打开会话
 			session = sqlSessionFactory.openSession();
+			session2 = sqlSessionFactory.openSession();
 			// session.selectList(XML命名空间+英文点号+查询SQL的id)
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -203,8 +205,64 @@ public class DmProductMapperTest {
 	    * 无法将指定字段设置为null
 	    */
 	}
+	@Test
+	public void test11() throws IOException {
+		
+	DmOrderMapper dom=session.getMapper(DmOrderMapper.class);
+	DmOrderitemMapper doim=session.getMapper(DmOrderitemMapper.class);
+	DmOrderitem doi1=new DmOrderitem();
+	DmOrderitem doi2=new DmOrderitem();
+	DmOrders dom1=new DmOrders();
+	//设置订单明细
+	doi1.setCount(1);
+	doi1.setTotal(100.0);
+	doi1.setPid(1);
 	
+	doi2.setCount(1);
+	doi2.setTotal(200.0);
+	doi2.setPid(1);
+	//设置订单
+	dom1.setTotal(300.0);
+	dom1.setState(1);
+	dom1.setUid(1);
+	dom1.setAid(1);
+	try {
+		dom.insert(dom1);
+		/**
+		 * 在添加订单明细时，要获取订单主键
+		 * 二期项目是进行查询获取的id值
+		 * 在多线程方式下会产生并发问题
+		 * mybatis可以在insert的同时获取id值
+		 */
+		doi1.setOid(dom1.getId());
+		doi2.setOid(dom1.getId());
+		doim.insert(doi1);
+		doim.insert(doi2);
+		session.commit();
+	}catch(Exception e) {
+		e.printStackTrace();
+		session.rollback();
+	}finally{
+		session.close();
+	}
 	
+	}
+	
+	@Test
+	public void test12() throws IOException {
+			/**
+			 * 缓存机制
+			 * Cache Hit Ratio [com.yc.damai.Dao.DmProductMapper]: 0.0
+			 * 缓存命中，当前查询结果在缓存中出现的概率
+			 */
+		DmProductMapper mapper=session.getMapper(DmProductMapper.class);
+		DmProductMapper mapper2=session.getMapper(DmProductMapper.class);
+	    int [] cids= {1000};
+	    mapper.selectBycids(cids);
+	    session.commit();
+	    mapper2.selectBycids(cids);
+	    mapper2.selectBycids(cids);
+	}
 	
 	
 	

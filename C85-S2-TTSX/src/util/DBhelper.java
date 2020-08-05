@@ -30,8 +30,8 @@ public class DBhelper {
 	 */
 	public Connection openConnection() {
 		String url = "jdbc:mysql://127.0.0.1/c85-s2-ttsx?useUnicode=true&characterEncoding=UTF-8";
-		String user = "zj233";//zj233
-		String password = "ZJzj233!";//ZJzj233!
+		String user = "root";//zj233
+		String password = "a";//ZJzj233!
 		try {
 			if (isAutoCommit) {
 				return DriverManager.getConnection(url, user, password);

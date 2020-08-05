@@ -11,5 +11,7 @@ public interface DmOrderitemMapper {
 	List<DmOrderitem> selectAll();
 	
 	DmOrderitem selectbyId(int id);
+	
+	int insert(DmOrderitem doi);
 
 }

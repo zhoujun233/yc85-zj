@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 当前接口名 -->
 <mapper namespace="com.yc.damai.Dao.DmProductMapper">
+	<!-- 该标签意味着打开缓存机制的二级缓存(cache中)，一级缓存在session中默认打开 -->
+	<cache eviction="FIFO" size="512" flushInterval="10000"
+		readOnly="true">
+	</cache>
+
 	<!-- 自定义字段映射 -->
 	<resultMap type="com.yc.damai.been.DmProduct" id="rmdp">
 		<!-- id永远定义主键映射关系 主键在mybatis中有特殊作用 -->

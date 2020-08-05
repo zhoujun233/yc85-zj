@@ -22,6 +22,9 @@
 		where id=#{id}
 	</select>
 
-
+    <insert id="insert">
+		insert into dm_orderitem
+		values(null,#{count},#{total},#{pid},#{oid})
+	</insert>
 
 </mapper>

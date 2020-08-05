@@ -9,7 +9,7 @@ import com.yc.damai.been.DmProduct;
 
 public interface DmOrderMapper {
 	
-	
+	int insert(DmOrders dos);
 	
 	DmOrders selectbyId(int id);
 

@@ -16,7 +16,7 @@ public class DmOrders {
 
     private Integer aid;
     
-   private List<DmOrderitem> list;
+    private List<DmOrderitem> list;
 
     public List<DmOrderitem> getList() {
 	return list;
