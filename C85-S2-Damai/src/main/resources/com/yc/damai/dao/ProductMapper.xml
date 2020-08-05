@@ -10,25 +10,24 @@
 	</cache>
 
 	<!-- 自定义字段映射 -->
-	<resultMap type="com.yc.damai.been.DmProduct" id="rmdp">
-		<!-- id永远定义主键映射关系 主键在mybatis中有特殊作用 -->
+	<!-- <resultMap type="com.yc.damai.been.DmProduct" id="rmdp">
+		id永远定义主键映射关系 主键在mybatis中有特殊作用
 		<id column="id" property="id" />
-		<!-- result永远定义非主键映射关系 -->
+		result永远定义非主键映射关系
 		<result column="market_price" property="marketPrice" />
 		<result column="shop_price" property="shopPrice" />
 		<result column="is_hot" property="isHot" />
-	</resultMap>
+	</resultMap> -->
 
 	<!-- id是select标签的唯一标识 resultType 是映射的实体类的类型 -->
 
-	<select id="selectAll" resultMap="rmdp">
+	<!-- <select id="selectAll" resultMap="rmdp">
 		select * from dm_product
-	</select>
+	</select> -->
 
-	<select id="selectbyId" resultMap="rmdp">
-		select * from dm_product where
-		id=#{id}
-	</select>
+	<!-- <select id="selectbyId" resultMap="rmdp">
+		select * from dm_product where id=#{id}
+	</select> -->
 	<!-- 组合查询 -->
 	<select id="selectbyObj" resultMap="rmdp">
 		select * from dm_product

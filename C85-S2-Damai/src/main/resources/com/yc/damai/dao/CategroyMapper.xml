@@ -6,26 +6,26 @@
 <mapper namespace="com.yc.damai.Dao.DmCategroyMapper">
 
 	<!-- fetchType="lazy" 惰性加载 延迟加载 -->
-	<resultMap type="com.yc.damai.been.DmCategory" id="rmdc">
+	<!-- <resultMap type="com.yc.damai.been.DmCategory" id="rmdc">
 		<collection property="listCategroy" column="id"
 			select="selectChildren" fetchType="lazy"></collection>
-	</resultMap>
+	</resultMap> -->
 	
 	
 	
 	
 	
 
-	<select id="selectChildren"
+	<!-- <select id="selectChildren"
 		resultType="com.yc.damai.been.DmCategory">
 		select * from dm_category where pid=#{id}
-	</select>
+	</select> -->
 
-	<select id="selectAll" resultMap="rmdc">
+	<!-- <select id="selectAll" resultMap="rmdc">
 		select * from dm_category
-	</select>
+	</select> -->
 
-	<insert id="insert">
+	<!-- <insert id="insert">
 		insert into dm_category values(null,#{cname},#{pid})
 	</insert>
 
@@ -35,7 +35,7 @@
 
 	<delete id="delete">
 		delete from dm_category where id=#{id}
-	</delete>
+	</delete> -->
 
 
 </mapper>

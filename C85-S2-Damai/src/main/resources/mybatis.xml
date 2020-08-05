@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- 忽略大小写 -->
+	<!-- 默认驼峰命名 -->
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
@@ -54,9 +54,15 @@
 	</environments>
 	<!--映射文件配置 -->
 	<mappers>
+	<!-- xml和注解混合模式  要使用xml方式注册 -->
 		<mapper resource="com/yc/damai/Dao/ProductMapper.xml" />
-		<mapper resource="com/yc/damai/Dao/CategroyMapper.xml" />
+		<!-- <mapper resource="com/yc/damai/Dao/CategroyMapper.xml" /> -->
 		<mapper resource="com/yc/damai/Dao/OrderitemMapper.xml" />
-		<mapper resource="com/yc/damai/Dao/OrderMapper.xml" />
+		<!-- <mapper resource="com/yc/damai/Dao/OrderMapper.xml" /> -->
+		<!-- 注册接口（无xml） -->
+		<mapper class="com.yc.damai.Dao.DmOrderMapper"/>
+		<mapper class="com.yc.damai.Dao.DmCategroyMapper"/>
+		<!-- 自动扫描包下的接口  xml也会被扫描到 -->
+		<!-- <package name="com.yc.damai.Dao"/> -->
 	</mappers>
 </configuration>

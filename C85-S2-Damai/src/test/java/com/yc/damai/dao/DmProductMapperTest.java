@@ -264,6 +264,12 @@ public class DmProductMapperTest {
 	    mapper2.selectBycids(cids);
 	}
 	
+	@Test
+	public void test13() throws IOException {
+			
+		DmProductMapper mapper=session.getMapper(DmProductMapper.class);
+		mapper.selectbyId(1);
+	}
 	
 	
 	
