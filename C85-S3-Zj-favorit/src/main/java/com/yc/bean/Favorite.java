@@ -1,6 +1,6 @@
 package com.yc.bean;
 
-public class favorite implements java.io.Serializable{
+public class Favorite implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private Integer fid;
