@@ -1,7 +1,6 @@
 package bean;
 
 import java.sql.Date;
-
 public class BuyerShow {
 	private Integer id;
 	private Integer pid;
