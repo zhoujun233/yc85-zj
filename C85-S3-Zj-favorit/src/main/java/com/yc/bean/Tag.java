@@ -5,7 +5,7 @@ public class Tag implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer tid;
     private String tname;
-    private String tcount;
+    private Integer tcount;
 	public Integer getTid() {
 		return tid;
 	}
@@ -18,16 +18,17 @@ public class Tag implements java.io.Serializable{
 	public void setTname(String tname) {
 		this.tname = tname;
 	}
-	public String getTcount() {
+	public Integer getTcount() {
 		return tcount;
 	}
-	public void setTcount(String tcount) {
+	public void setTcount(Integer tcount) {
 		this.tcount = tcount;
 	}
 	@Override
 	public String toString() {
-		return "tag [tid=" + tid + ", tname=" + tname + ", tcount=" + tcount + "]";
+		return "Tag [tid=" + tid + ", tname=" + tname + ", tcount=" + tcount + "]";
 	}
+	
     
     
     

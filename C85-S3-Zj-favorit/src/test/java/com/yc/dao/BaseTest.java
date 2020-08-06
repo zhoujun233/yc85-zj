@@ -6,6 +6,7 @@ import org.junit.Test;
 import com.yc.bean.Favorite;
 import com.yc.bean.Tag;
 import com.yc.bean.TagFavorite;
+import com.yc.util.FavoriteBiz;
 import com.yc.util.MyBatisHelper;
 
 public class BaseTest {
@@ -25,7 +26,7 @@ public class BaseTest {
 
 		Tag t = new Tag();
 		t.setTname("淘宝");
-		t.setTcount("1");
+		t.setTcount(1);
 		tm.insert(t);
 
 		TagFavorite tf = new TagFavorite();
@@ -35,6 +36,26 @@ public class BaseTest {
 
 		session.commit();
 		session.close();
+	}
+	@Test
+	public void test2() {
+		FavoriteBiz fb=new FavoriteBiz();
+		Favorite f = new Favorite();
+		f.setFlabel("淘宝");
+		f.setFurl("taobao.com");
+		f.setFdesc("败家网站");
+		f.setFtages("购物,生活");
+		fb.addFavorite(f);
+	}
+	@Test
+	public void test3() {
+		FavoriteBiz fb=new FavoriteBiz();
+		Favorite f = new Favorite();
+		f.setFlabel("网易");
+		f.setFurl("163.com");
+		f.setFdesc("常用网站");
+		f.setFtages("门户,军事,生活");
+		fb.addFavorite(f);
 	}
 
 }

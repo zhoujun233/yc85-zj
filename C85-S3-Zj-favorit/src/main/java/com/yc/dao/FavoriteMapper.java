@@ -10,5 +10,7 @@ public interface FavoriteMapper {
 	@Insert("insert into favorite value(null,#{flabel},#{furl},#{fdesc},#{ftages})")
 	@Options(useGeneratedKeys = true,keyProperty = "fid",keyColumn = "fid")
 	int insert(Favorite f);
+	
+	int update(Favorite f);
 
 }
