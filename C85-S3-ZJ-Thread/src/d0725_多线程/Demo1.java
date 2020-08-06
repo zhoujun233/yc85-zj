@@ -1,7 +1,6 @@
 package d0725_多线程;
 
 import java.util.Scanner;
-
 public class Demo1 {
 	public static void main(String[] args) {
 		A a=new A("a方法的线程");
