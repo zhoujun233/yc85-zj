@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 public class DmAddress {
     private Integer id;
-
     private Integer uid;
 
     private String addr;
