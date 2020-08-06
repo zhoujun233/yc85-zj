@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>TagServlet</display-name>
+    <servlet-name>TagServlet</servlet-name>
+    <servlet-class>com.yc.web.TagServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TagServlet</servlet-name>
+    <url-pattern>/TagServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

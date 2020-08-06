@@ -10,7 +10,7 @@ import com.yc.util.FavoriteBiz;
 import com.yc.util.MyBatisHelper;
 
 public class BaseTest {
-	
+
 	@Test
 	public void test() {
 		SqlSession session = MyBatisHelper.openSession();
@@ -37,9 +37,10 @@ public class BaseTest {
 		session.commit();
 		session.close();
 	}
+
 	@Test
 	public void test2() {
-		FavoriteBiz fb=new FavoriteBiz();
+		FavoriteBiz fb = new FavoriteBiz();
 		Favorite f = new Favorite();
 		f.setFlabel("淘宝");
 		f.setFurl("taobao.com");
@@ -47,15 +48,24 @@ public class BaseTest {
 		f.setFtages("购物,生活");
 		fb.addFavorite(f);
 	}
+
 	@Test
 	public void test3() {
-		FavoriteBiz fb=new FavoriteBiz();
+		FavoriteBiz fb = new FavoriteBiz();
 		Favorite f = new Favorite();
 		f.setFlabel("网易");
 		f.setFurl("163.com");
 		f.setFdesc("常用网站");
 		f.setFtages("门户,军事,生活");
 		fb.addFavorite(f);
+	}
+
+	@Test
+	public void test4() {
+		SqlSession session = MyBatisHelper.openSession();
+		TagMapper tm = session.getMapper(TagMapper.class);
+		//tm.selectAll();
+
 	}
 
 }
