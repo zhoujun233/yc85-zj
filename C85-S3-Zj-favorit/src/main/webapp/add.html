@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加书签</title>
+<script type="text/javascript" src="0101util/vue.min.js"></script>
+<script type="text/javascript" src="0101util/axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+名称：<input v-model="flabel"><br>
+地址：<input v-model="furl"><br>
+描述：<input v-model="fdesc"><br>
+分类：<input v-model="ftages"><br>
+<button @click="add">确定</button><button @click="close">取消</button>
+<script type="text/javascript">
+var vue=new Vue({
+	el:"#app",
+	data:{
+		flabel:"",
+		furl:"",
+		fdesc:"",
+		ftages:""
+	},
+	creadtd:function(){
+		
+	},
+	methods:{
+		add(){
+			axios({
+				url:"/C85-S3-Zj-favorit/addServlet.do",
+				params:{
+					op:"add",
+					flabel:this.flabel,
+					furl:this.furl,
+					fdesc:this.fdesc,
+					ftages:this.ftages,
+				}
+			}).then((res)=>{
+				alert(res.data)
+				if(res.data=="添加成功"){
+					location.href="index.html";
+				}
+			});
+		},
+		close(){
+			location.href="index.html";
+		},
+	}
+});
+
+</script>
+</div>
+</body>
+</html>
