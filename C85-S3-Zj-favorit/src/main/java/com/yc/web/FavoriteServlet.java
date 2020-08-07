@@ -17,16 +17,23 @@ import com.yc.dao.FavoriteMapper;
 import com.yc.dao.TagMapper;
 import com.yc.util.MyBatisHelper;
 
-@WebServlet("/TagServlet.do")
-public class TagServlet extends BaseServlet {
+@WebServlet("/FavoriteServlet.do")//在web.xml也能配置url-pattern
+public class FavoriteServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
     
-	protected void queryTag(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void queryFavorite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String tid=request.getParameter("tid");
 		SqlSession session = MyBatisHelper.openSession();
-		TagMapper tm = session.getMapper(TagMapper.class);
-		List<Tag>list=tm.selectAll();
-		print(response, list);
+		FavoriteMapper fm = session.getMapper(FavoriteMapper.class);
+		if(tid.equals("-1")) {
+			Integer tid1=null;
+			List<Favorite>list=fm.selectByTid(tid1);
+			print(response, list);
+		}else {
+			List<Favorite>list=fm.selectByTid(Integer.valueOf(tid));
+			print(response, list);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

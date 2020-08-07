@@ -91,47 +91,49 @@
 <div class="container productList">
 	
 
-		<div class="span6">
+		<div class="span6" id="app">
 			<div class="hotProductCategory">
 			
-						<dl>
+						<dl v-for="l in list">
 							<dt>
-								<a href="clist.html?1">女装男装</a>
+								<a href="clist.html?1">{{l.cname}}</a>
 							</dt>
 							
-									<dd>
-										<a href="clist.html?1&csid=1">潮流女装</a>
-									</dd>
 							
-									<dd>
-										<a href="clist.html?1&csid=2">初冬羽绒</a>
-									</dd>
-							
-									<dd>
-										<a href="clist.html?1&csid=3">毛呢大衣</a>
-									</dd>
-							
-									<dd>
-										<a href="clist.html?1&csid=4">温暖毛衣</a>
-									</dd>
-							
-									<dd>
-										<a href="clist.html?1&csid=5">精选男装</a>
-									</dd>
-							
-									<dd>
-										<a href="clist.html?1&csid=6">冬季外套</a>
-									</dd>
-							
-									<dd>
-										<a href="clist.html?1&csid=7">羽绒服</a>
-									</dd>
 							
 						</dl>
 			
 						
 		</div>
 </div>
+<script type="text/javascript">
+var vue=new Vue({
+	el:"#app",
+	data:{
+		list:[],
+		id:""
+	},
+	created:function(){
+		var hash=window.location.search;
+		hash=hash.replace('?','');
+		hash=hash.split('&');
+		this.id=hash[0];
+		axios({
+			url:"/clist.do",
+			params:{
+				id:this.id,
+				os:"clist"
+				
+			}		
+		}).then(res=>{
+			this.list=res.data;
+		})
+	}
+	
+});
+
+
+</script>
 		
 		<div class="span18 last">
 			

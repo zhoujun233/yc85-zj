@@ -54,6 +54,9 @@
 	</environments>
 	<!--映射文件配置 -->
 	<mappers>
-	<package name="com.yc.dao"/>
+		<mapper resource="com/yc/dao/FavoriteMapper.xml" />
+		<mapper class="com.yc.dao.TagFacoriteMapper" />
+		<mapper class="com.yc.dao.TagMapper" />
+		<!-- <package name="com.yc.dao"/> -->
 	</mappers>
 </configuration>

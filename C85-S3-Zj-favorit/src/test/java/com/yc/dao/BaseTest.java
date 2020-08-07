@@ -67,5 +67,14 @@ public class BaseTest {
 		//tm.selectAll();
 
 	}
+	@Test
+	public void test5() {
+		SqlSession session = MyBatisHelper.openSession();
+		FavoriteMapper fm= session.getMapper(FavoriteMapper.class);
+		fm.selectByTid(null);
+		fm.selectByTid(1);
+		fm.selectByTid(0);
+
+	}
 
 }
