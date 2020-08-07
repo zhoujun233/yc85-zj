@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ClistServlet</display-name>
+    <servlet-name>ClistServlet</servlet-name>
+    <servlet-class>com.yc.damai.Servlet.ClistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClistServlet</servlet-name>
+    <url-pattern>/ClistServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
