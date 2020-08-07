@@ -53,10 +53,10 @@ public class BaseTest {
 	public void test3() {
 		FavoriteBiz fb = new FavoriteBiz();
 		Favorite f = new Favorite();
-		f.setFlabel("网易");
-		f.setFurl("163.com");
+		f.setFlabel("哔哩哔哩");
+		f.setFurl("t.bilibili.com");
 		f.setFdesc("常用网站");
-		f.setFtages("门户,军事,生活");
+		f.setFtages("门户,娱乐,动漫");
 		fb.addFavorite(f);
 	}
 

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML >
 <html lang="en-US">
   <head>
     <script type="text/javascript" src="0101util/vue.min.js"></script>
@@ -63,10 +63,10 @@
 				
 				<div style="padding:6px 10px;" v-for="l in list">	
 					<div>
-						<a :href="l.furl" style="color:blue;font-size:18px;" target="_blank">{{l.flabel}}</a>
+						<a :href="'http://'+l.furl" style="color:blue;font-size:18px;" target="_blank">{{l.flabel}}</a>
 					</div>
 					<div style="color:black;font-size:16px;">	
-						{{l.furl}}
+						http://{{l.furl}}
 					</div>
 					<div style="color:green;font-size:14px;">
 						{{l.fdesc}}
@@ -98,6 +98,8 @@
 					}
 				}).then((res)=>{
 					this.list=res.data;
+					/* var url=res.data[0].furl;
+					console.info(url); */
 				});
 			},
 			queryTag(){

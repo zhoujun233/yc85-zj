@@ -10,7 +10,7 @@
 		<where>
 			<choose>
 				<when test="tid==null">
-					and ftages is null
+					and (ftages is null or gtages ='')
 				</when>
 				<when test="tid >0">
 					and exists(select * from tagfavorite b
