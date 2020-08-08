@@ -1,6 +1,7 @@
 package com.yc.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
@@ -23,5 +24,7 @@ public interface TagMapper {
 	
 	@Select("select * from tag ")
 	List<Tag> selectAll();
+	
+	
 
 }
