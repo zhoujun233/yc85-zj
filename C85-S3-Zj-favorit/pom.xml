@@ -56,5 +56,17 @@
     <artifactId>junit</artifactId>
     <version>4.12-beta-1</version>
 </dependency>
+<!-- 词云生成依赖 -->
+ <dependency>  
+            <groupId>com.kennycason</groupId>  
+            <artifactId>kumo-core</artifactId>  
+            <version>1.13</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>com.kennycason</groupId>  
+            <artifactId>kumo-tokenizers</artifactId>  
+            <version>1.12</version>  
+        </dependency>  
+        
   </dependencies>
 </project>
