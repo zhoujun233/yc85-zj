@@ -3,4 +3,28 @@
   <groupId>com.zj</groupId>
   <artifactId>C85-S3-ZJ-Spring</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+  <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>    
+  </properties>
+  
+  <dependencies>
+  
+  <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.2.6.RELEASE</version>
+    </dependency>
+  
+   <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12-beta-1</version>
+</dependency>
+
+  </dependencies>
 </project>
