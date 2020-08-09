@@ -9,8 +9,79 @@
 
 	<bean id="mdao" class="com.zj.spring.dao.MySqlUserDao">
 	</bean>
-	
+
 	<bean id="odao" class="com.zj.spring.dao.OracleUserDao">
 	</bean>
+	
+	<!--Spring依赖(DI) 三种注入方式
+	    注入：对属性进行初始化设值 
+	    1.setter注入(set方法注入)
+	    2.构造方法注入
+	    3.接口注入 ==>SpringMVC大量的应用
+	-->
+	<!-- setter注入依赖 -->
+	<bean id="p1" class="com.zj.spring.Person">
+		<property name="name" value="武松"></property>
+		<property name="age" value="35"></property>
+		<property name="kills">
+			<list>
+				<value type="java.lang.String">潘金莲</value>
+				<value>西门庆</value>
+				<value>蒋门神</value>
+				<null></null>
+			</list>
+		</property>
+		<property name="height" value="175"></property>
+		<property name="alisa" value="打老虎"></property>
+	</bean>
+	
+	<!--  构造方法的注入     primary设置为主要的  默认执行的bean -->
+	<!-- 使用index 可以确定为使用哪个构造方法 -->
+	<bean class="com.zj.spring.Person" primary="true">
+	<constructor-arg name="name" value="李逵"  index="0"></constructor-arg>
+	<constructor-arg name="age" value="40" index="1"></constructor-arg>
+	<constructor-arg name="alisa" value="黑旋风" index="2"></constructor-arg>
+	</bean> 
+	
+	<!-- Person属性  friend -->
+	<bean id="p2" class="com.zj.spring.Person">
+		<property name="name" value="吴用"></property>
+		<property name="age" value="40"></property>
+		<property name="friend" >
+		<bean  class="com.zj.spring.Person">
+		<property name="name" value="林冲"></property>
+		<property name="age" value="36"></property>
+		</bean>
+		</property>
+	</bean>
+	
+	<!-- ref引用其他的bean -->
+	<bean id="p3" class="com.zj.spring.Person">
+		<property name="name" value="吴用"></property>
+		<property name="age" value="40"></property>
+		<property name="friend" ref="p4">
+		
+		</property>
+	</bean>
+	
+	<bean id="p4"  class="com.zj.spring.Person">
+		<property name="name" value="林冲"></property>
+		<property name="age" value="36"></property>
+		</bean>
+		
+		<!-- 工厂方式创建对象 -->
+		<!-- 静态工厂方法配置 -->
+		<bean id="p5"  class="com.zj.spring.Person" factory-method="PersonFactory">
+		<property name="name" value="王英"></property>
+		</bean>
+		
+		<!-- 实例工厂方法配置 -->
+		<bean id="p6"  class="com.zj.spring.Person" 
+		factory-method="PersonFactory1" factory-bean="p7">
+		<property name="name" value="郭嘉"></property>
+		</bean>
+		
+		<bean id="p7"  class="com.zj.spring.Person" >
+		</bean>
 
 </beans>
