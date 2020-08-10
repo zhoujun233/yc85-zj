@@ -109,5 +109,27 @@ public class HelloTest {
 		Assert.assertEquals("郭嘉",p1.getName());
 		Assert.assertEquals(20, p1.getAge());
 	}
+	
+	@Test
+	public void test8() {
+		Hello h0 = (Hello) ctx.getBean("hello");
+		Hello h0_1 = (Hello) ctx.getBean("hello");
+		Hello h0_2 = (Hello) ctx.getBean("hello");
+		
+		Hello h1 = (Hello) ctx.getBean("hello1");
+		Hello h1_1 = (Hello) ctx.getBean("hello1");
+		Hello h1_2 = (Hello) ctx.getBean("hello1");
+		
+		System.out.println(h0_1==h0);//true
+		System.out.println(h0==h1);//false
+		System.out.println(h1_1==h1);//false
+		
+	}
 
+	@Test
+	public void test9() {
+		System.out.println("==========test=========");
+		Hello h0 = (Hello) ctx.getBean("hello2");
+		h0.sayHello();
+	}
 }

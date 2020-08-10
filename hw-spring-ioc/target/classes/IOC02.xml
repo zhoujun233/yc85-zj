@@ -27,30 +27,13 @@
 	</bean>
 
 <!--  test2  -->
-	<bean id="account1" class="com.yc.spring.bank.bean.Account">
-		<property name="money" ref="account2" ></property>
-		<property name="id" ref="account3"></property>
-		<property name="name" ref="account4"></property>
-	</bean>
-
-	<bean id="account2" class="com.yc.spring.bank.bean.Account">
-		<property name="money" value="10.0"></property>
+	<bean id="account1" class="com.yc.spring.bank.bean.Account" scope="prototype">
+		<property name="money" value="100.0" ></property>
 		<property name="id" value="1"></property>
-		<property name="name" value="z"></property>
-	</bean>
-	
-	<bean parent="account3" class="com.yc.spring.bank.bean.Account">
-		<property name="money" value="101.0"></property>
-		<property name="id" value="10"></property>
-		<property name="name" value="z"></property>
-	</bean>
-	
-	<bean parent="account4" class="com.yc.spring.bank.bean.Account">
-		<property name="money" value="1011.0"></property>
-		<property name="id" value="11"></property>
-		<property name="name" value="zx"></property>
+		<property name="name" value="abc"></property>
 	</bean>
 
+	
 
 
 </beans>
