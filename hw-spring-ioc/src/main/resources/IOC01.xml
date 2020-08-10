@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- test1 -->
+	<bean id="myUser" class="com.yc.spring.bbs.bean.User">
+		<property name="uid" value="123">
+		</property>
+		<property name="uname" value="武松">
+		</property>
+		<property name="upass" value="abc123">
+		</property>
+		<property name="head" value="20.gif">
+		</property>
+		<property name="gender" value="1">
+		</property>
+	</bean>
+
+	<!-- test2 -->
+	<bean class="com.yc.spring.bbs.bean.User" primary="true">
+		<property name="uname" value="石秀">
+		</property>
+		<property name="upass" value="XYZ890">
+		</property>
+		<property name="head" value="345.gif">
+		</property>
+		<property name="gender" value="0">
+		</property>
+	</bean>
+
+	<!-- test3 -->
+	<!-- com.yc.spring.bbs.bean.Page -->
+	<bean id="page1" class="com.yc.spring.bbs.bean.Page">
+		<property name="total" value="100">
+		</property>
+		<property name="rows">
+			<list>
+				<value>湖南</value>
+				<value>广东</value>
+				<value>湖北</value>
+				<value type="java.lang.Integer">100</value>
+			</list>
+		</property>
+	</bean>
+	<!-- test4 -->
+	<bean id="board" class="com.yc.spring.bbs.bean.Board">
+		<constructor-arg name="boardid" value="100"></constructor-arg>
+		<constructor-arg name="boardname" value="jsp"></constructor-arg>
+		<constructor-arg name="parentid" value="200"></constructor-arg>
+		<property name="parent" ref="b1">
+		</property>
+		<property name="topicList">
+			<list >
+				<null></null>
+				<null></null>
+				<null></null>
+				<ref bean="t1" />
+				<null></null>
+			</list>
+		</property>
+	</bean>
+	<bean id="b1" class="com.yc.spring.bbs.bean.Board">
+		<constructor-arg name="boardid" value="300"></constructor-arg>
+		<constructor-arg name="boardname" value="java"></constructor-arg>
+		<constructor-arg name="parentid" value="200"></constructor-arg>
+	</bean>
+
+	<bean id="t1" class="com.yc.spring.bbs.bean.Topic">
+		<property name="uid" value="400"></property>
+	</bean>
+	
+	<!-- test5 -->
+	<bean id="page2" class="com.yc.spring.bbs.bean.Page">
+		<property name="total" value="200">
+		</property>
+		<property name="rows">
+			<list>
+				<ref bean="u1" />
+				<map>
+					<entry key="0734" value="衡阳"></entry>
+					<entry key="0731" value="长沙"></entry>
+				</map>
+				<set>
+					<value type="java.lang.Integer">100</value>
+					<ref bean="myUser" />
+					<value>呵呵</value>
+				</set>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="u1" class="com.yc.spring.bbs.bean.User">
+		<property name="uname" value="华荣"></property>
+	</bean>
+
+</beans>
