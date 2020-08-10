@@ -13,5 +13,13 @@ public class Hello {
 	public void sayHello() {
 		System.out.println("你好");
 	}
+	
+	public void init() {
+		System.out.println("=======Hello被创建=========");
+	}
+	
+	public void destroy() {
+		System.out.println("=======Hello被销毁=========");
+	}
 
 }
