@@ -1,18 +1,26 @@
 package com.yc.cinema;
 
+import javax.annotation.Resource;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yc.cinema.web.IndexAction;
 import com.yc.cinema.web.MovieAction;
 import com.yc.cinema.web.UserAction;
 
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = BeanConfig.class)
+//@ContextConfiguration("beans.xml")
 public class BaseTest {
 
 	private IndexAction iAction;
 
 	private MovieAction mAction;
-
+	@Resource 
 	private UserAction uAction;
 
 	@Test

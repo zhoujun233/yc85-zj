@@ -1,14 +1,19 @@
 package com.yc.cinema.biz;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.yc.cinema.dao.CommentsDao;
 import com.yc.cinema.dao.MovieDao;
-
+@Service
 public class CommentsBiz {
 
+	@Resource 
 	private UserBiz ubiz;
-
+	@Resource 
 	private CommentsDao cdao;
-
+	@Resource 
 	private MovieDao mdao;
 
 	public UserBiz getUbiz() {
