@@ -95,4 +95,16 @@ public class Container {
 		return avg;
 	}
 
+	public void setMax(Object max) {
+		this.max = max;
+	}
+
+	public void setMin(Object min) {
+		this.min = min;
+	}
+
+	
+	
+	
+
 }

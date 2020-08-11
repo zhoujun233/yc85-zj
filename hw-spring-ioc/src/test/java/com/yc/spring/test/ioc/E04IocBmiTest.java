@@ -36,7 +36,7 @@ public class E04IocBmiTest {
 		
 		Person minP = (Person) container.getMin();
 		Person maxP = (Person) container.getMax();
-		
+
 		assertTrue(container.getList().size() > 10);
 		assertEquals("宋江", maxP.getName());
 		assertEquals("燕青", minP.getName());

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
@@ -13,6 +14,7 @@ import com.zj.spring.dao.MySqlUserDao;
 import com.zj.spring.dao.OracleUserDao;
 
 @Configuration    //表示这是一个注解配置
+@ComponentScan("com.zj.spring")  //扫描该包和其所有子包
 public class ConfigAnno {
 	
 	@Bean("hello")   //每一个方法对应xml里面的每一个bean
@@ -20,15 +22,13 @@ public class ConfigAnno {
 		return new Hello();
 	}
 	
-	@Bean("mdao")
-	public MySqlUserDao getMySqlUserDao() {
-		return new MySqlUserDao();
-	}
-	
-	@Bean("odao")
-	public OracleUserDao getOracleUserDao() {
-		return new OracleUserDao();
-	}
+	/*
+	 * @Bean("mdao") public MySqlUserDao getMySqlUserDao() { return new
+	 * MySqlUserDao(); }
+	 * 
+	 * @Bean("odao") public OracleUserDao getOracleUserDao() { return new
+	 * OracleUserDao(); }
+	 */
 	
 	@Bean("p1")
 	public Person getPerson1() {
