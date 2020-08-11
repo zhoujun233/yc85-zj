@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
      http://www.springframework.org/schema/context/spring-context.xsd">
-<!-- test1 -->
+	<!-- test1 -->
 	<bean id="account" class="com.yc.spring.bank.bean.Account"
 		primary="true">
 		<property name="money" value="125.0"></property>
@@ -26,14 +26,33 @@
 		<property name="name" value="张三"></property>
 	</bean>
 
-<!--  test2  -->
-	<bean id="account1" class="com.yc.spring.bank.bean.Account" scope="prototype">
-		<property name="money" value="100.0" ></property>
+	<!-- test2 -->
+	<bean id="account1" class="com.yc.spring.bank.bean.Account"
+		scope="prototype">
+		<property name="money" value="100.0"></property>
+		<property name="id" value="1"></property>
+		<property name="name" value="abc"></property>
+	</bean>
+	<!-- test3 -->
+	<bean id="account2" class="com.yc.spring.bank.bean.Account"
+		factory-method="getInstance">
+		<property name="money" value="100.0"></property>
 		<property name="id" value="1"></property>
 		<property name="name" value="abc"></property>
 	</bean>
 
-	
-
+	<bean id="account3" class="com.yc.spring.bank.bean.Account"
+		factory-method="getInstance">
+		<property name="money" value="100.0"></property>
+		<property name="id" value="1"></property>
+		<property name="name" value="abc"></property>
+	</bean>
+	<!-- test4 -->
+	<bean id="account4" class="com.yc.spring.bank.bean.Account"
+		 scope="prototype" factory-method="getInstance">
+		<property name="money" value="100.0"></property>
+		<property name="id" value="1"></property>
+		<property name="name" value="abc"></property>
+	</bean>
 
 </beans>

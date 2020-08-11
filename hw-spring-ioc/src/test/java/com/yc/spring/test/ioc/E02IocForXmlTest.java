@@ -54,6 +54,7 @@ public class E02IocForXmlTest {
 		Account a2 = (Account) cxt.getBean("account4");
 		Account a3 = (Account) cxt.getBean("account4");
 		Account a4 = (Account) cxt.getBean("account4");
+		
 		Account a5 = (Account) cxt.getBean("account4");
 		Account a6 = (Account) cxt.getBean("account4");
 		Account a7 = (Account) cxt.getBean("account4");

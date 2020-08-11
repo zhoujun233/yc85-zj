@@ -35,9 +35,14 @@ public class Account {
 	/**
 	 * 这是一个不完整的单例模式，少了私有的构造方法
 	 */
+	private static int count=0;
 	private static Account singleAccount; 
 	public static Account getInstance() {
-		if(singleAccount == null) {
+		count++;
+		/*
+		 * if(singleAccount == null) { singleAccount = new Account(); }
+		 */
+		if(count<=4) {
 			singleAccount = new Account();
 		}
 		return singleAccount;
