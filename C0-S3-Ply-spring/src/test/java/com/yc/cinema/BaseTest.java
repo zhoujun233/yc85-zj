@@ -16,9 +16,9 @@ import com.yc.cinema.web.UserAction;
 @ContextConfiguration(classes = BeanConfig.class)
 //@ContextConfiguration("beans.xml")
 public class BaseTest {
-
+	@Resource
 	private IndexAction iAction;
-
+	@Resource
 	private MovieAction mAction;
 	@Resource 
 	private UserAction uAction;
