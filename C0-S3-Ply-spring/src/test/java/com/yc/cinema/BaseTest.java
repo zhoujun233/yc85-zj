@@ -12,7 +12,7 @@ import com.yc.cinema.web.IndexAction;
 import com.yc.cinema.web.MovieAction;
 import com.yc.cinema.web.UserAction;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)//Spring测试的导入
 @ContextConfiguration(classes = BeanConfig.class)
 //@ContextConfiguration("beans.xml")
 public class BaseTest {
