@@ -1,6 +1,8 @@
 package com.zj.spring.dao;
 
 import org.springframework.stereotype.Repository;
+
+import com.zj.spring.Person;
 /**
  * 注解方式的自动装配
  * @author Administrator
@@ -16,6 +18,12 @@ public class MySqlUserDao implements UserDao{
 	public int selectByUser(String name) {
 		System.out.println("mysql  userdao");
 		return 100;
+	}
+
+	@Override
+	public int insert(Person p) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
