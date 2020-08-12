@@ -19,6 +19,8 @@ public class AopTest {
 	@Autowired
 	@Qualifier("odao")//指定插入的组件的id
 	private  UserDao odao;
+	@Autowired
+	private  Hello hello;
 	
 	@Test
 	public void test(){  
@@ -26,6 +28,13 @@ public class AopTest {
 		mdao.selectByUser("");
 		System.out.println("==========");
 		odao.selectByUser("");
+		}
+	
+	@Test
+	public void test1(){  
+		System.out.println(mdao);//JDK
+		System.out.println(odao);//JDK
+		System.out.println(hello);//CGLIB
 		}
 
 
