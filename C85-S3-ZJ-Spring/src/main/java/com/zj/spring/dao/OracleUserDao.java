@@ -8,7 +8,7 @@ public class OracleUserDao implements UserDao{
 	public int selectByUser(String name) {
 		System.out.println("oracle  userdao");
 		 int i=3/0; 
-		return 0;
+		return 250;
 	}
 	
 	
