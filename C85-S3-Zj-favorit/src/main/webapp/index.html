@@ -1,87 +1,104 @@
 <!DOCTYPE HTML >
 <html lang="en-US">
-  <head>
-    <script type="text/javascript" src="0101util/vue.min.js"></script>
+<head>
+<script type="text/javascript" src="0101util/vue.min.js"></script>
 <script type="text/javascript" src="0101util/axios.min.js"></script>
-    <title>收藏</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	
-	<link rel="stylesheet" type="text/css" href="styles.css">
-  </head>
-  <body>
-    <form name="favForm" method="post" action="/cang/fav.do;jsessionid=FF8C0487A99814B144B07E5633524A0F">
-      <input type="hidden" name="op" value="toList" />
-    
-    <div class="banner" valign="top">
-    	 收藏
-    </div>
-      
-	<table cellspacing="0" cellpadding="0" border="0" id="app">
-		<tr>
-			<td style="text-align:right;" valign="top">
-			<!-- 左边Tag列表 -->
-				<div class="left_labels" >
-				 
-				
-				<table class="labels_table" cellspacing="0" cellpadding="0" border="0">
-					<tr><td><a href="add.html"  style="font-weight:bold;">添加书签</a></td></tr>
-					<tr>
-						<td class="selected_label">
-							<a href="javascript:void()" @click="queryFavorite(0)">全部</a>
-						</td>
-					</tr>
-					<tr>
-						<td >
-							<a href="javascript:void()" @click="queryFavorite(-1)">未分类</a>
-						</td>
-					</tr>
-					<tr  v-for="l1 in list1">
-						<td v-if="l1.tcount<3" style="font-size: 0.9em">
-							<a href="javascript:void()" @click="queryFavorite(l1.tid)">{{l1.tname}}</a>
-						</td>
-						<td v-if="l1.tcount>=3&&l1.tcount<5" style="font-size: 1em">
-							<a href="javascript:void()" @click="queryFavorite(l1.tid)">{{l1.tname}}</a>
-						</td>
-						<td v-if="l1.tcount>=5" style="font-size: 1.5em">
-							<a href="javascript:void()" @click="queryFavorite(l1.tid)">{{l1.tname}}</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a style="font-weight:bold;" href="fav.do?op=toCloud">云图</a>
-						</td>
-					</tr>
-				</table>
-				</div>
-			</td>
-			<td>
-			<!-- 右边fav内容 -->
-				<div class="content_links" >
-				
-				<div style="padding:6px 10px;" v-for="l in list">	
-					<div>
-						<a :href="'http://'+l.furl" style="color:blue;font-size:18px;" target="_blank">{{l.flabel}}</a>
+<title>收藏</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<form name="favForm" method="post"
+		action="/cang/fav.do;jsessionid=FF8C0487A99814B144B07E5633524A0F">
+		<input type="hidden" name="op" value="toList" />
+
+		<div class="banner" valign="top">收藏</div>
+
+		<table cellspacing="0" cellpadding="0" border="0" id="app">
+			<tr>
+				<td style="text-align: right;" valign="top">
+					<!-- 左边Tag列表 -->
+					<div class="left_labels">
+
+
+						<table class="labels_table" cellspacing="0" cellpadding="0"
+							border="0">
+							<tr>
+								<td><a href="add.html" style="font-weight: bold;">添加书签</a></td>
+							</tr>
+							<tr>
+								<td class="selected_label"><a href="javascript:void()"
+									@click="queryFavorite(0)">全部</a></td>
+							</tr>
+							<tr>
+								<td><a href="javascript:void()" @click="queryFavorite(-1)">未分类</a>
+								</td>
+							</tr>
+							<tr v-for="l1 in list1">
+								<td v-if="l1.tcount<3" style="font-size: 0.9em"><a
+									href="javascript:void()" @click="queryFavorite(l1.tid)">{{l1.tname}}</a>
+								</td>
+								<td v-if="l1.tcount>=3&&l1.tcount<5" style="font-size: 1em">
+									<a href="javascript:void()" @click="queryFavorite(l1.tid)">{{l1.tname}}</a>
+								</td>
+								<td v-if="l1.tcount>=5" style="font-size: 1.5em"><a
+									href="javascript:void()" @click="queryFavorite(l1.tid)">{{l1.tname}}</a>
+								</td>
+							</tr>
+							<tr>
+								<td><a style="font-weight: bold;" href="javascript:void()"
+									@click="cloud()">云图</a></td>
+							</tr>
+						</table>
 					</div>
-					<div style="color:black;font-size:16px;">	
-						http://{{l.furl}}
+				</td>
+				<td>
+					<!-- 右边fav内容 -->
+					<div class="content_links">
+						<div>
+							<table class="labels_table" cellspacing="0" cellpadding="0"
+								v-if="clod==1">
+								<tr>
+									<th v-for="l1 in list1">
+									<a v-if="l1.tcount<2" href="javascript:void()" @click="queryFavorite(l1.tid)" 
+									style="font-size: 0.5em">{{l1.tname}}</a>
+									<th v-for="l1 in list1"><a v-if="l1.tcount>2" href="javascript:void()" @click="queryFavorite(l1.tid)"
+										style="font-size: 0.7em">{{l1.tname}}</a> <a href="javascript:void()" @click="queryFavorite(l1.tid)"
+										v-if="l1.tcount>2&&l1.tcount<4" style="font-size: 1em">{{l1.tname}}</a>
+										<a v-if="l1.tcount>4" style="font-size: 1.2em" href="javascript:void()" @click="queryFavorite(l1.tid)">{{l1.tname}}</a>
+									</th>
+								</tr>
+							</table>
+						</div>
+						<div style="padding: 6px 10px;" v-for="l in list">
+							<div>
+								<a :href="'http://'+l.furl"
+									style="color: blue; font-size: 18px;" target="_blank">{{l.flabel}}</a>
+							</div>
+							<div style="color: black; font-size: 16px;">
+								http://{{l.furl}}</div>
+							<div style="color: green; font-size: 14px;">{{l.fdesc}}</div>
+
+						</div>
+
 					</div>
-					<div style="color:green;font-size:14px;">
-						{{l.fdesc}}
-					</div>
-				</div>	
-				</div>
-			</td>
-		</tr>
-	</table> 
-	<script type="text/javascript">
+
+				</td>
+			</tr>
+
+		</table>
+
+		<script type="text/javascript">
 	var vue=new Vue({
 		el:"#app",
 		data:{
 			list:[],
 			tid:"",
-			list1:[]
+			list1:[],
+			clod:0
 		},
 		created:function(){
 			this.queryFavorite(0);
@@ -111,10 +128,14 @@
 					this.list1=res.data;
 				});
 			},
+			cloud(){
+				this.clod=1;
+				
+			},
 		}
 	})
 	
 	</script>
-    </form>
-  </body>
+	</form>
+</body>
 </html>

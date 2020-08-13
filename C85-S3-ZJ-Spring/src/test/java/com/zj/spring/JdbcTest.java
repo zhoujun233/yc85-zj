@@ -35,6 +35,10 @@ public class JdbcTest {
 		bbiz.transfer(1, 2, 300);
 	}
 	
+	@Test
+	public void test4() {
+		bbiz.save(1, 1000);
+	}
 	
 
 }

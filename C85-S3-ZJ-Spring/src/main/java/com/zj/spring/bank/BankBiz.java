@@ -21,8 +21,10 @@ public class BankBiz {
 	//存取款
 	public void save(int id,double money) {
 		adao.update(id, money);
+		int i=1/0;
 		odao.insert(id, money);
 	}
+	//转账
 	public void transfer(int id1,int id2,double money) {
 		save(id1,money);
 		save(id2,-money);
