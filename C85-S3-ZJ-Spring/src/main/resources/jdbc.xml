@@ -1,13 +1,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        https://www.springframework.org/schema/context/spring-context.xsd">
+        https://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	
+	<!-- Spring JDBC -->
     <bean id="jdbctemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -22,5 +28,46 @@
     <context:property-placeholder location="jdbc.properties"/>
     <!-- 组件扫描 -->
     <context:component-scan base-package="com.zj.spring.bank"></context:component-scan>
+    
+    <!-- 事务管理器 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 启动事务注解驱动 -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+    
+    
+    <!-- 这是xml事务 -->
+     <!-- Spring 定义的事务增强-->
+    <!-- <tx:advice id="txAdvice" transaction-manager="txManager"> -->
+        <!-- 事务属性的配置 -->
+       <!--  <tx:attributes> -->
+            <!-- 所有get方法只读事务，提升效率-->
+          <!--   <tx:method name="get*" read-only="true"/> -->
+            <!-- 其他方法使用默认事务
+             propagation="REQUIRED"    默认的传播特性
+                isolation="DEFAULT"    默认的隔离级别
+                timeout  ="-1"   超时设置  -1不限时间      
+                1. 语句复杂  执行时间过长  
+                2. 操作数据被其他事务锁定
+                rollback-for   哪些事务需要回滚
+                no-rollback-for   哪些事务不需要回滚
+                Spring默认回滚规则是回滚运行期异常
+                                         如果出现编译期异常：1将编译期异常转为运行期异常
+                2使用rollback-for 
+            -->
+            <!-- <tx:method name="*"
+                propagation="REQUIRED"
+                isolation="DEFAULT"
+                rollback-for="com.zj.spring.bank.BankException"
+            />
+        </tx:attributes>
+    </tx:advice> -->
+    
+    <!--AOP切片设置  -->
+    <!-- <aop:config>
+        <aop:pointcut id="fooServiceOperation" expression="execution(* com.zj.spring.bank.BankBiz.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/>
+    </aop:config> -->
 
 </beans>

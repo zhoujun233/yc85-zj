@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.zj.spring.bank.BankBiz;
+import com.zj.spring.bank.BankException;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("/jdbc.xml")
@@ -31,12 +32,12 @@ public class JdbcTest {
 	}
 	
 	@Test
-	public void test3() {
-		bbiz.transfer(1, 2, 300);
+	public void test3() throws BankException {
+		bbiz.transfer(1, 2, 1000);
 	}
 	
 	@Test
-	public void test4() {
+	public void test4() throws BankException {
 		bbiz.save(1, 1000);
 	}
 	
