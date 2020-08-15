@@ -16,5 +16,7 @@
 		base-package="com.zj.springmvc"></context:component-scan>
 <!-- SpringMVC注解驱动标签 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
+<!-- 静态页面标签 -->	
+	<mvc:default-servlet-handler/>
 
 </beans>
