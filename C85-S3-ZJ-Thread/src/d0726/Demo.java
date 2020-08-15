@@ -1,5 +1,4 @@
 package d0726;
-
 import java.io.FileOutputStream;
 import java.io.FilterOutputStream;
 import java.io.IOException;
