@@ -92,4 +92,11 @@ public class DmUser {
     public void setCreatetime(Timestamp createtime) {
         this.createtime = createtime;
     }
+
+	@Override
+	public String toString() {
+		return "DmUser [id=" + id + ", ename=" + ename + ", cname=" + cname + ", password=" + password + ", email="
+				+ email + ", phone=" + phone + ", sex=" + sex + ", state=" + state + ", createtime=" + createtime + "]";
+	}
+    
 }
