@@ -2,6 +2,8 @@ package com.yc.springmvc.action;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,26 +87,20 @@ public class IndexAction {
 	@RequestMapping("toPage")
 	public String Taobao12(@RequestParam(value = "flag", defaultValue = "") String flag,
 			@RequestParam(value = "type", defaultValue = "") String type) {
-		if(type.equals("2")||type.equals("3")||type.equals("4")) {
+		if (type.equals("2") || type.equals("3") || type.equals("4")) {
 			return "baidu";
 		}
 		return "taobao";
 	}
-	
-	
-	@RequestMapping(name="form.do")
-	public String baidu1() {
+
+	@RequestMapping(value = "form.do",method = RequestMethod.GET)
+	public String changes() {
 		return "baidu";
 	}
-
-	
-	@RequestMapping(name="form.do",method = RequestMethod.POST)
-	public String taobao() {
-		return "taobao";
-	}
-	
-	
-
-	
+	 
+	@RequestMapping(value = "form.do",method = RequestMethod.POST) 
+	public String changes1() {
+	  return "taobao"; 
+	  }
 
 }

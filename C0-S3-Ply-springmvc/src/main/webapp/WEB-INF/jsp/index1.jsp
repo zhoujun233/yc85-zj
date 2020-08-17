@@ -91,10 +91,10 @@ function exec(name){
 			</form>
 
 			<li>
-				<input type="button" value="跳转百度" onclick="exec(this)">
+				<input type="button" value="跳转百度" onclick="exec(this.value)">
 			
 			<li>
-				<input type="button" value="跳转淘宝" onclick="exec(this)">
+				<input type="button" value="跳转淘宝" onclick="exec(this.value)">
 
 			<li>
 				请选择正确的编号：<select id="num">
