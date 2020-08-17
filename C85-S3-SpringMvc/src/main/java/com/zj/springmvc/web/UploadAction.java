@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class UploadAction {
 
-	@PostMapping("upload")
+	@PostMapping(value = "upload",produces = "text/html;charset=utf-8")
 	public String upload(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
 		String dispath = "E:/images/";
 		String filename = file.getOriginalFilename();// 文件名

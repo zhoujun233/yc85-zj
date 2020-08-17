@@ -32,7 +32,7 @@
     <version>5.2.6.RELEASE</version>
 </dependency>
   	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-<dependency>
+<dependency><!-- SpringMVC返回json数据需要的依赖 -->
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.10.0</version>
