@@ -21,19 +21,22 @@
 	<!-- 静态页面标签 -->
 	<mvc:default-servlet-handler />
 
-	<!-- location:被映射的路径，工程外的路径 classpath:/META-INF/public-web-resources/ 映射类路径中的文件夹 
-		"file:/F:/images/"映射本地文件夹 mapping:映射后的路径 工程内部路径 -->
+	<!-- location:被映射的路径，工程外的路径 
+	classpath:/META-INF/public-web-resources/ 映射类路径中的文件夹 
+		"file:/F:/images/"映射本地文件夹
+		 mapping:映射后的路径 工程内部路径 -->
 	<mvc:resources location="file:/E:/images/"
 		mapping="/photo/**"></mvc:resources>
 
 
-<!--  配置文件上传解析器-->
+	<!-- 配置文件上传解析器 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
-		<!-- 最大上传文件大小 -->
+		<!-- 最大上传文件大小 100M左右 -->
 		<property name="maxUploadSize" value="10000000" />
 
 	</bean>
+	
 
 </beans>
