@@ -35,7 +35,7 @@
 			<li><a href="toPage?flag=1">打开淘宝（taobao.jsp）</a>
 			<li><a href="toPage?flag=2">打开淘宝（taobao.jsp）</a>
 			<li><a href="toPage?type=1">打开淘宝（taobao.jsp）</a>
-			<li><a href="toPage?type=2">打开百度（taobao.jsp）</a>
+			<li><a href="toPage?type=2">打开百度（baidu.jsp）</a>
 			<li><a href="toPage?type=3">打开百度（baidu.jsp）</a>
 			<li><a href="toPage?type=4">打开百度（baidu.jsp）</a>
 		</ul>

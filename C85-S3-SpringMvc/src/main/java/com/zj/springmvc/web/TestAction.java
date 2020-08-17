@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.zj.springmvc.damai.bean.DmUser;
 
 @RestController
-@RequestMapping("user") // 在类上的定义用于定义该类所有方法的共同路径
+@RequestMapping( path="user",produces = "text/html;charset=UTF-8") // 在类上的定义用于定义该类所有方法的共同路径
 /* @SessionAttributes(names = "loginuser",types = Data.class)
  * name  用于监控数据模型中出现指定名字的对象
  * type  用于监控数据模型中出现指定类型的对象
@@ -30,15 +30,15 @@ import com.zj.springmvc.damai.bean.DmUser;
  *  */
 public class TestAction {
 
-	@RequestMapping("?/add") // ?表示一个字符
+	@RequestMapping(path="?/add") // ?表示一个字符
 	public String add() {
-		return "add";
+		return "周军";
 
 	}
 
 	@RequestMapping("*/mod") // *表示1—n字符
 	public String mod() {
-		return "mod";
+		return "周军";
 
 	}
 
