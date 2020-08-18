@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexAction {
@@ -103,4 +104,12 @@ public class IndexAction {
 	  return "taobao"; 
 	  }
 
+	@ResponseBody//转成JSON数据
+	@RequestMapping(value = "call.do", method = RequestMethod.POST)
+	public String jump1(@RequestParam(value = "type") String type) {
+		if (type.equals("2")) {
+			return "taobao";
+		}
+		return "baidu";
+	}
 }

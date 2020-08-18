@@ -11,13 +11,11 @@ import com.yc.springmvc.bean.Result;
 @RestController
 public class Index2Action {
 
-	@RequestMapping(value = "call.do", method = RequestMethod.POST)
-	public String jump1(@RequestParam(value = "type") String type) {
-		if (type.equals("2")) {
-			return "taobao";
-		}
-		return "baidu";
-	}
+	/*
+	 * @RequestMapping(value = "call.do", method = RequestMethod.POST) public String
+	 * jump1(@RequestParam(value = "type") String type) { if (type.equals("2")) {
+	 * return "taobao"; } return "baidu"; }
+	 */
 
 	@RequestMapping(value = "call1.do", method = RequestMethod.POST)
 	public Result change2(@RequestParam("type") String type) {
