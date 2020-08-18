@@ -3,17 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="0101util/vue.min.js"></script>
+<script type="text/javascript" src="0101util/axios.min.js"></script>
+<style type="text/css">
+span {
+	color: red;
+}
+</style>
 </head>
-<body>
-<form action="regs.do">
-用户名:<input name="ename"><br>
-昵称:<input name="cname"><br>
-密码:<input name="password"><br>
-邮箱:<input name="email"><br>
-电话:<input name="phone"><br>
-性别:<input name="sex"><br>
-<button>注册</button>
-</form>
 
+<body>
+	<form id="app" action="regs.do">
+		账号:<input name="ename" v-model="user.ename"><span id="ename"></span><br>
+		昵称:<input name="cname" v-model="user.cname"><span id="cname"></span><br>
+		密码:<input name="password" v-model="user.password"><span
+			id="password"></span><br> 邮箱:<input name="email"
+			v-model="user.email"><span id="email"></span><br> 电话:<input
+			name="phone" v-model="user.phone"><span id="phone"></span><br>
+		<button type="button" @click="reg()">注册</button>
+	</form>
+	<script type="text/javascript">
+var error=new Array();
+var i=0;
+var vue=new Vue({
+	el:"#app",
+	data:{
+		user:{}
+	},
+	methods:{
+		reg(){
+			axios.get("regs.do",{
+				params:this.user
+			}).then(res=>{
+				if(res.data.code=="1"){
+					alert("注册成功");
+				}else{
+					for(var e of res.data.data){
+						//获取错误字段对应的span对象
+						var span=document.getElementById(e.field);
+						//设置span对象的内部文本
+						span.innerText=e.defaultMessage;
+				        } 
+			       }
+				
+			});
+		},
+		
+	}
+});
+</script>
 </body>
 </html>

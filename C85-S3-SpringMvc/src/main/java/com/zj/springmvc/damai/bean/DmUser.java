@@ -23,6 +23,7 @@ public class DmUser {
     @Length(min=6,max=12,message = "密码长度必须为6到12个字符")
     private String password;
 
+    @NotEmpty(message = "电子邮箱不能为空")
     @Email
     private String email;
 

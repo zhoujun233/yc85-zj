@@ -38,5 +38,16 @@
 
 	</bean>
 	
+	<!-- 拦截器定义 -->
+	<!-- <mvc:interceptors>
+	<mvc:interceptor> -->
+	<!-- 这里定义的地址不是servlet的URL定义 -->
+	<!-- <mvc:mapping path="/*.do"/>拦截
+	<mvc:mapping path="/reg.html"/>拦截
+	<mvc:exclude-mapping path="regs.do"/>不拦截
+	<bean class="com.zj.springmvc.web.LoginInterceptor"></bean>
+	</mvc:interceptor>
+	</mvc:interceptors> -->
+	
 
 </beans>
