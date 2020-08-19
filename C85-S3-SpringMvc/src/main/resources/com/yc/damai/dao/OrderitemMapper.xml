@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 当前接口名 -->
+<mapper namespace="com.yc.damai.Dao.DmOrderitemMapper">
+
+	<resultMap type="com.yc.damai.been.DmOrderitem" id="rmdo">
+		<!-- 一对一关联查询 select用于指定完成关联查询的SQL的id => 命名空间+英文点+id -->
+		<association property="dmPorduct" column="pid"
+			select="com.yc.damai.Dao.DmProductMapper.selectbyId"></association>
+	</resultMap>
+
+	<select id="selectAll"
+		resultType="com.yc.damai.been.DmOrderitem">
+		select * from dm_orderitem
+		where oid=#{oid}
+	</select>
+
+	<select id="selectbyId" resultMap="rmdo">
+		select * from dm_orderitem
+		where id=#{id}
+	</select>
+
+    <insert id="insert">
+		insert into dm_orderitem
+		values(null,#{count},#{total},#{pid},#{oid})
+	</insert>
+
+</mapper>

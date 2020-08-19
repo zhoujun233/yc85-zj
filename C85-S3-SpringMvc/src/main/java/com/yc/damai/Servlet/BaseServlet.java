@@ -27,11 +27,11 @@ public abstract class BaseServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//操作字段
-		String os=request.getParameter("os");
+		String op=request.getParameter("op");
 		//java的黑科技 ==>反射技术
 		//通过op获取方法对象
 		try {
-			Method method=this.getClass().getDeclaredMethod(os, HttpServletRequest.class, HttpServletResponse.class);
+			Method method=this.getClass().getDeclaredMethod(op, HttpServletRequest.class, HttpServletResponse.class);
 		    //设置方法可以被访问
 			method.setAccessible(true);
 		    //执行方法

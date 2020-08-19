@@ -124,7 +124,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 				<configuration>
 					<!-- 端口配置 -->
 					<httpConnector>
-						<port>2222</port>
+						<port>80</port>
 					</httpConnector>
 					<!-- 组件扫描时间间隔 -->
 					<scanIntervalSeconds>2</scanIntervalSeconds>

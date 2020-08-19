@@ -11,6 +11,7 @@ import com.yc.damai.util.Result;
 
 
 @RestController
+@RequestMapping("demo")
 public class ValidAction {
 
 	/**

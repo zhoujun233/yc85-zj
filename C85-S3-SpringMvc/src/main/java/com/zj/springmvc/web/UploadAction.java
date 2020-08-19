@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@RequestMapping("demo")
 public class UploadAction {
 
 	@PostMapping(value = "upload",produces = "text/html;charset=utf-8")

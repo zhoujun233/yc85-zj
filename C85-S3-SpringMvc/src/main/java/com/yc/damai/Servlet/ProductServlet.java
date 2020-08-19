@@ -30,13 +30,13 @@ public class ProductServlet extends BaseServlet{
 	private static final long serialVersionUID = 1L;
        private ProductDao pdao=new ProductDao();
     
-	protected void hottop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	String sql="select*from dm_product where is_hot=1 limit 0,10";
-	List<?> list=new DBHelper().query(sql);
-	HashMap<String,Object> page=new HashMap<>();
-	page.put("list", list);
-	print(response,page);
-	}
+	/*
+	 * protected void hottop(HttpServletRequest request, HttpServletResponse
+	 * response) throws ServletException, IOException { String
+	 * sql="select*from dm_product where is_hot=1 limit 0,10"; List<?> list=new
+	 * DBHelper().query(sql); HashMap<String,Object> page=new HashMap<>();
+	 * page.put("list", list); print(response,page); }
+	 */
 
 	protected void newtop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sql="select*from dm_product ORDER BY createtime DESC LIMIT 0,10";
