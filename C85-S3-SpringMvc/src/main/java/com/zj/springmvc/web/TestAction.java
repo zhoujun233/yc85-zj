@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.zj.springmvc.damai.bean.DmUser;
+import com.yc.damai.been.DmUser;
+
 
 @RestController
 @RequestMapping( path="user",produces = "text/html;charset=UTF-8") // 在类上的定义用于定义该类所有方法的共同路径

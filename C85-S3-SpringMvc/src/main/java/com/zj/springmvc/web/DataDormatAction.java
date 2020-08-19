@@ -4,7 +4,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zj.springmvc.damai.bean.DmOrders;
+import com.yc.damai.been.DmOrders;
+
 
 @RestController
 public class DataDormatAction {

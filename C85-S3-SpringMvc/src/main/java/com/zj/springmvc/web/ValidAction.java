@@ -6,8 +6,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zj.springmvc.damai.bean.DmUser;
-import com.zj.springmvc.damai.bean.Result;
+import com.yc.damai.been.DmUser;
+import com.yc.damai.util.Result;
+
 
 @RestController
 public class ValidAction {

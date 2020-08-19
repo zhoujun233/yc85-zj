@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zj.springmvc.damai.bean.DmCart;
-import com.zj.springmvc.damai.bean.DmProduct;
+import com.yc.damai.been.DmCart;
+import com.yc.damai.been.DmProduct;
+import com.yc.damai.been.DmUser;
+
 //@Controller返回的是页面
-import com.zj.springmvc.damai.bean.DmUser;
 @RestController   //返回的是JSON
+@RequestMapping("demo")
 public class ProcutAction {
 	/**
 	 * path==>value 互为同义词
