@@ -25,23 +25,23 @@ public class ProcutAction {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "product.do", params = "op=query")
+	@RequestMapping(value = "products.do", params = "op=query")
 	public String query() {
 		return "query!!";
 	}
 
 	// @GetMapping===@RequestMapping(method = RequestMethod.Get )
-	@GetMapping(value = "product.do", params = "op=mod")
+	@GetMapping(value = "products.do", params = "op=mod")
 	public String mod() {
 		return "mod!!";
 	}
 
-	@RequestMapping(value = "product.do", params = "op=add", method = RequestMethod.POST)
+	@RequestMapping(value = "products.do", params = "op=add", method = RequestMethod.POST)
 	public String add() {
 		return "add!!";
 	}
 
-	@RequestMapping(value = "product.do", params = "op=aks",
+	@RequestMapping(value = "products.do", params = "op=aks",
 			headers = {"Host=localhost:8888","Cookie"})
 	public String msg() {
 		return "msg!!";

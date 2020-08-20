@@ -5,50 +5,60 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="
-	http://www.springframework.org/schema/beans
-    https://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context
-    https://www.springframework.org/schema/context/spring-context.xsd
-    http://www.springframework.org/schema/mvc
-    https://www.springframework.org/schema/mvc/spring-mvc.xsd
-     http://mybatis.org/schema/mybatis-spring 
-     http://mybatis.org/schema/mybatis-spring.xsd">
-
-	<!-- 组件扫描 -->
+		http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://mybatis.org/schema/mybatis-spring
+        http://mybatis.org/schema/mybatis-spring.xsd">
+        
+   <!-- 手动添加 Spring xml 文件 命名空间 -->
+   
+   <!-- 主键扫描 -->
 	<context:component-scan
-		base-package="com.zj.springmvc"></context:component-scan>
-
-	<!-- SpringMVC注解驱动标签 -->
+		base-package="com.yc.springmvc"></context:component-scan>
+   
+   <!-- SpringMVC 控制器注解驱动标签 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
-
-	<!-- 静态页面标签 -->
+   
+   <!-- 静态资源处理的定义 html , css ... -->
 	<mvc:default-servlet-handler />
-
-	<!-- location:被映射的路径，工程外的路径 classpath:/META-INF/public-web-resources/ 映射类路径中的文件夹 
-		"file:/F:/images/"映射本地文件夹 mapping:映射后的路径 工程内部路径 -->
-	<mvc:resources location="file:/E:/images/"
-		mapping="/photo/**"></mvc:resources>
-
-
-	<!-- 配置文件上传解析器 -->
+   
+   <!-- <mvc:resources 
+   		location="被映射的路径, 工程外的路径 C:/d" 
+   		classpath:/META-INF/public-web-resources/  映射类路径中的文件夹
+   		file:/c:/page	映射本地文件夹
+   		mapping="映射后的路径, 工程内部的路径 page/">
+   </mvc:resources> -->
+	<mvc:resources
+		location="file:/F:/Tomcat/webapps/photo/images/fulls/"
+		mapping="/photo/**">
+	</mvc:resources>
+   
+   <!-- 配置文件上传解析器 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
-		<!-- 最大上传文件大小 100M左右 1801 4032=18M -->
-		<property name="maxUploadSize" value="100000000" />
+    <!-- 最大上传文件的大小 -->
+		<property name="maxUploadSize" value="1000000000" />
 
 	</bean>
 
 	<!-- 拦截器定义 -->
-	<!-- <mvc:interceptors> <mvc:interceptor> -->
-	<!-- 这里定义的地址不是servlet的URL定义 -->
-	<!-- <mvc:mapping path="/*.do"/>拦截 <mvc:mapping path="/reg.html"/>拦截 <mvc:exclude-mapping 
-		path="regs.do"/>不拦截 <bean class="com.zj.springmvc.web.LoginInterceptor"></bean> 
-		</mvc:interceptor> </mvc:interceptors> -->
-		
-		
-     <!-- 配置数据源 -->
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 这里的地址定义 != Servlet 的url定义 -->
+			<mvc:mapping path="/demo/*.do" />
+			<mvc:mapping path="/demo/reg.html" />
+			<mvc:exclude-mapping path="/demo/reg.do" />
+			<bean class="com.zj.springmvc.web.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 配置数据源 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"
@@ -57,13 +67,15 @@
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	<!-- mybatis工厂会话bean -->
+
+	<!-- MyBatis会话工厂bean -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:com/yc/damai/dao/*.xml" />
 	</bean>
-	
-	<!-- 发现映射器  映射器扫描 -->
+
+	<!-- 发现映射器   映射器扫描 -->
 	<mybatis:scan base-package="com.yc.damai.Dao"/>
 
 </beans>

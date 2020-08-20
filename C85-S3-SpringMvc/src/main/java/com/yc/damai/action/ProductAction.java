@@ -27,11 +27,11 @@ public class ProductAction {
 	 * @param m
 	 * @return
 	 */
-	@RequestMapping(path = "producthot",params = "op=query")
+	@RequestMapping(path = "product1.do",params = "op=query")
 	public Map<String,Object> query(DmProduct dp){
-		//dp.setIsHot(1);
+		dp.setIsHot(1);
 		Map<String,Object> m=new HashMap<String,Object>();
-		m.put("list",pm.selectforHot());
+		m.put("list",pm.selectbyObj(dp));
 		return m;
 		
 	}
