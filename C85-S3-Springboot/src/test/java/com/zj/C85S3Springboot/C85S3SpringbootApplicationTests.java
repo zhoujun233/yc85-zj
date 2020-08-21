@@ -18,10 +18,10 @@ class C85S3SpringbootApplicationTests {
 	@Resource
 	SendMail sm;
 
-	@Test
-	void contextLoads() {
-		Assert.isTrue(mapper.selectAll().size()>0, "没有数据");
-	}
+	/*
+	 * @Test void contextLoads() { Assert.isTrue(mapper.selectAll().size()>0,
+	 * "没有数据"); }
+	 */
 	
 	@Test
 	void testMail() {
