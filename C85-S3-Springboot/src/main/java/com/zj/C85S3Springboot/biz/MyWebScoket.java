@@ -39,10 +39,14 @@ public class MyWebScoket {
 		//
 		String ss[]=message.split(":");
 		String id=ss[0];
-		String msg=ss[1];
+		//String msg=ss[1];
+		String msger=ss[1];
+		String msg=ss[2];
+		
 		Session targetSession =websocketMap.get(id);
-		if(targetSession!=null) {
-			targetSession.getBasicRemote().sendText(msg);
+		
+		if(targetSession!=null) {//id+":"+
+			targetSession.getBasicRemote().sendText(msger+":"+msg);
 		}else {
 			System.out.println(id+"不在线");
 		}
@@ -52,7 +56,7 @@ public class MyWebScoket {
 	@Scheduled(cron = "0 */2 * * * ?")//每两分钟执行一次
 	public void luckyou() throws IOException {
 		for(Session session:websocketMap.values()) {
-			session.getBasicRemote().sendText("祝你好运");
+			session.getBasicRemote().sendText("系统:祝你好运");
 		}
 	}
 }

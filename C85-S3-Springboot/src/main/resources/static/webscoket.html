@@ -32,9 +32,11 @@ function closeWebSocket() {
 }
 //发送消息
 function send() {
-	var msg = tname.value + ":" + content.value;
+	//var msg = tname.value + ":" + content.value;
+	var msg = tname.value + ":" + sname.value+":" + content.value;
 	websocket.send(msg);
-	msgs.value += msg + "\n";
+	//msgs.value += msg + "\n";
+	msgs.value += sname.value+":" + content.value+"\n";
 }
 </script>
 </head>
@@ -42,12 +44,15 @@ function send() {
 <div style="width: 40%;float: left; height: 200px">
 		发送者:<input id="sname"><br>
 		接收者:<input id="tname"><br> 
-		内容:	<input id="content"><br>
 		<button onclick="conn()">连接</button>
-		<button onclick="send()">发送</button>
+		
 	</div>
 	<div style="width: 50%;float: right; height: 200px">
 		<textarea id="msgs" style="width:100%;height:100%"></textarea>
+	</div>
+	<div style="width: 50%;float: right; height: 300px">
+			<input id="content" style="position: relative;top: 10px"><br>
+		<button onclick="send()" style="position: relative;left: 180px;bottom: 10px">发送</button>
 	</div>
 </body>
 </html>
