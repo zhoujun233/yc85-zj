@@ -22,8 +22,7 @@ public class User implements java.io.Serializable {
 	@Length(min = 4, max = 10, message = "密码字符为4~10")
 	@NotEmpty(message = "密码不能为空")
 	private String pwd;
-	@Length(min = 11, max = 11, message = "电话号码需要11个字符")
-	@NotEmpty(message = "电话号码不能为空")
+	
 	private String phone;
 	@Email
 	private String email;

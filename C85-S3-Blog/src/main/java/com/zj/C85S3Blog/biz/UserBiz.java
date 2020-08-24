@@ -13,7 +13,7 @@ public class UserBiz {
 	@Resource
 	private UserMapper umapper;
 
-	public void reg(User user) throws BizException {
+	public void register(User user) throws BizException {
 		// 可以忽略字段验证 数据校验
 		// 同名验证
 		if (umapper.selectAccount(user.getAccount()) > 0) {
