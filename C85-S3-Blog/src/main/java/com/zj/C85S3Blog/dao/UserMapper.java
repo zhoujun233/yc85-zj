@@ -7,7 +7,7 @@ import com.zj.C85S3Blog.bean.User;
 
 public interface UserMapper {
 	
-	@Insert("insert into values(null,#{name},#{account},#{pwd},#{phone},"
+	@Insert("insert into user values(null,#{name},#{account},#{pwd},#{phone},"
 			+ "#{email},#{head},now(),#{status},#{type})")
 	public void insert(User user);
 	
