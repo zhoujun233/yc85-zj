@@ -29,6 +29,7 @@ import com.zj.C85S3Blog.biz.UserBiz;
 import com.zj.C85S3Blog.dao.ArticleMapper;
 import com.zj.C85S3Blog.dao.CategoryMapper;
 import com.zj.C85S3Blog.util.Result;
+import com.zj.C85S3Blog.util.Util;
 
 @Controller
 public class UserAction {
@@ -49,7 +50,7 @@ public class UserAction {
 	@PostMapping("reg.do")
 	public String register(@Valid User user, Errors errors, Model m) {
 		if (errors.hasErrors()) {
-			m.addAttribute("errors", asMap(errors));
+			m.addAttribute("errors", Util.asMap(errors));
 			m.addAttribute("user", user);
 
 			return "reg";
@@ -59,7 +60,7 @@ public class UserAction {
 		} catch (BizException e) {
 			e.printStackTrace();
 			errors.rejectValue("account", "account", e.getMessage());
-			m.addAttribute("errors", asMap(errors));
+			m.addAttribute("errors", Util.asMap(errors));
 			m.addAttribute("user", user);
 
 			return "reg";
@@ -92,12 +93,13 @@ public class UserAction {
 	 * 登录: Ajax提交 ==> Vue
 	 */
 
-	@RequestMapping("login.do")
+	@PostMapping("login.do")
 	@ResponseBody
 	public Result login(@Valid User user, Errors errors, HttpSession session) {
 		try {
 			if (errors.hasFieldErrors("account") || errors.hasFieldErrors("pwd")) {
-				Result res = new Result(0, "验证错误!", errors.getFieldErrors());
+				//将错误结果转成集合再返回
+				Result res = new Result(0, "验证错误!", Util.asMap(errors));
 				return res;
 			}
 			User dbuser = ubiz.Login(user);
@@ -110,22 +112,6 @@ public class UserAction {
 		}
 	}
 
-	/**
-	 * 将所有的字段验证错写入到一个map
-	 * 
-	 * @param errors
-	 * @return
-	 */
-	private Map<String, String> asMap(Errors errors) {
-		if (errors.hasErrors()) {
-			Map<String, String> ret = new HashMap<String, String>();
-			for (FieldError fe : errors.getFieldErrors()) {
-				ret.put(fe.getField(), fe.getDefaultMessage());
-			}
-			return ret;
-		} else {
-			return null;
-		}
-	}
+	
 
 }
