@@ -36,13 +36,26 @@
 	<section class="container">
 		<div class="content-wrap">
 			<div class="content">
-				<form action="reg.do" method="post">
+			<form action="upload.do" method="post" enctype="multipart/form-data">
+			<img src="/image/头像5.jpg" style="width: 100px">
+		    <input type="file" name="file">
+			<button>上传</button>
+			</form>
+				<form action="reg.do" method="post" >
+				    
+				
 					账号:<input name="account" th:value="${user}!=null?${user.account}:''">
 					<span class="e" th:if="${errors}!=null" th:text="${errors.get('account')}"></span><br>
+					
 					 昵称:<input name="name" th:value="${user}!=null?${user.name}:''">
 					<span class="e" th:if="${errors}!=null" th:text="${errors.get('name')}"></span><br>
-					密码:<input name="pwd" th:value="${user}!=null?${user.pwd}:''">
+					
+					密码:<input name="pwd" type="password" th:value="${user}!=null?${user.pwd}:''">
 					<span class="e" th:if="${errors}!=null" th:text="${errors.get('pwd')}"></span><br>
+					
+					phone:<input name="phone"  th:value="${user}!=null?${user.phone}:''">
+					<span class="e" th:if="${errors}!=null" th:text="${errors.get('phone')}"></span><br>
+					
 					邮箱:<input name="email" th:value="${user}!=null?${user.email}:''">
 					<span class="e" th:if="${errors}!=null" th:text="${errors.get('email')}"></span><br>
 					<button >注册</button>
@@ -112,15 +125,16 @@
 			</div>
 			<div class="widget widget_hot">
 				<h3>热门文章</h3>
-				<ul>
-					<li><a href=""><span class="thumbnail"><img
-								class="thumb" data-original="images/excerpt.jpg"
-								src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span
-							class="muted"><i class="glyphicon glyphicon-time"></i>
-								2016-1-4 </span><span class="muted"><i
-								class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
-					
-				</ul>
+				<ul th:each="h : ${hlist}">
+        <li>
+        <a th:href="'article.do?id='+${h.id}"><span class="thumbnail">
+        <img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span>
+        <span class="text" th:text="${h.title}">php如何判断一个日期的格式是否正确</span>
+        <span class="muted"><i class="glyphicon glyphicon-time">
+        </i> <span th:text="${h.createtime}">2016-1-4</span> </span>
+        <span class="muted" th:text="${h.readcnt}"><i class="glyphicon glyphicon-eye-open">
+        </i> 120</span></a></li>
+        </ul>
 			</div>
 		</aside>
 	</section>

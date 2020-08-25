@@ -17,12 +17,13 @@ public class User implements java.io.Serializable {
 	@NotEmpty(message = "昵称不能为空")
 	private String name;
 	@NotEmpty(message = "用户名不能为空")
-	@Length(min = 4, max = 10, message = "用户名字符为4~10")
+	@Length(min = 4, max = 10, message = "用户名字符为4~10位")
 	private String account;
-	@Length(min = 4, max = 10, message = "密码字符为4~10")
+	@Length(min = 4, max = 10, message = "密码字符为4~10位")
 	@NotEmpty(message = "密码不能为空")
 	private String pwd;
-	
+	@Length(min = 11, max = 11, message = "电话号码必须为11位")
+	@NotEmpty(message = "电话号码不能为空")
 	private String phone;
 	@Email
 	private String email;

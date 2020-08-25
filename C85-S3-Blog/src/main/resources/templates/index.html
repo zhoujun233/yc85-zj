@@ -15,6 +15,8 @@
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/nprogress.js"></script>
 <script src="js/jquery.lazyload.min.js"></script>
+<script src="0101util/vue.min.js"></script>
+<script src="0101util/axios.min.js"></script>
 <!--[if gte IE 9]>
   <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
   <script src="js/html5shiv.min.js" type="text/javascript"></script>
@@ -49,13 +51,10 @@
         <h1 class="logo hvr-bounce-in"><a href="" title=""><img src="images/logo.png" alt=""></a></h1>
       </div>
       <div class="collapse navbar-collapse" id="header-navbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="hidden-index active"><a data-cont="异清轩首页" href="index.html">异清轩首页</a></li>
-          <li><a href="category.html">前端技术</a></li>
-          <li><a href="category.html">后端程序</a></li>
-          <li><a href="category.html">管理系统</a></li>
-          <li><a href="category.html">授人以渔</a></li>
-          <li><a href="category.html">程序人生</a></li>
+        <ul class="nav navbar-nav navbar-right" th:each="c : ${clist}">
+          <li class="hidden-index active">
+          <a  href="index.html" th:text="${c.name}">异清轩首页</a>
+          </li>
         </ul>
         <form class="navbar-form visible-xs" action="/Search" method="post">
           <div class="input-group">
@@ -176,12 +175,15 @@
     </div>
     <div class="widget widget_hot">
       <h3>热门文章</h3>
-      <ul>
-        <li><a href=""><span class="thumbnail"><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
-        <li><a href=""><span class="thumbnail"><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
-        <li><a href=""><span class="thumbnail"><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
-        <li><a href=""><span class="thumbnail"><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
-        <li><a href=""><span class="thumbnail"><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span><span class="text">php如何判断一个日期的格式是否正确</span><span class="muted"><i class="glyphicon glyphicon-time"></i> 2016-1-4 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> 120</span></a></li>
+      <ul th:each="h : ${hlist}">
+        <li>
+        <a th:href="'article.do?id='+${h.id}"><span class="thumbnail">
+        <img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></span>
+        <span class="text" th:text="${h.title}">php如何判断一个日期的格式是否正确</span>
+        <span class="muted"><i class="glyphicon glyphicon-time">
+        </i> <span th:text="${h.createtime}">2016-1-4</span> </span>
+        <span class="muted" th:text="${h.readcnt}"><i class="glyphicon glyphicon-eye-open">
+        </i> 120</span></a></li>
       </ul>
     </div>
   </aside>
@@ -226,7 +228,7 @@
 <div class="modal fade user-select" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="/Admin/Index/login" method="post">
+      <form id="ff"  action="/Admin/Index/login" method="post">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="loginModalLabel">登录</h4>
@@ -234,18 +236,48 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="loginModalUserNmae">用户名</label>
-            <input type="text" class="form-control" id="loginModalUserNmae" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
+            <input v-model="user.account" type="text" class="form-control" id="loginModalUserNmae" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
           </div>
           <div class="form-group">
             <label for="loginModalUserPwd">密码</label>
-            <input type="password" class="form-control" id="loginModalUserPwd" placeholder="请输入密码" maxlength="18" autocomplete="off" required>
+            <input v-model="user.pwd" type="password" class="form-control" id="loginModalUserPwd" placeholder="请输入密码" maxlength="18" autocomplete="off" required>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="submit" class="btn btn-primary">登录</button>
+          <button type="button" class="btn btn-primary" @click="login">登录</button>
         </div>
       </form>
+       <script type="text/javascript">
+      	var vue = new Vue({
+      		el : "#ff",
+      		data : {
+      			user : {
+      				account:"",
+      				pwd:""
+      			}
+      		},
+      		methods : {
+      			login(){
+      				// var params = new SearchParam ...
+      				axios.get("login.do",{
+      					params : this.user
+      				}).then( res => {
+      					// res.data ==> Result 对象 (  code, msg, data)
+      					if(res.data.code == 0){
+      						alert(res.data.msg);
+      					} else {
+      						// 修改页面的登录链接 ...
+      						var dbuser = res.data.data;
+      						$(".login").text("欢迎" + dbuser.name);
+      						// 隐藏登录窗口
+      						$('#loginModal').modal('hide')
+      					}
+      				});
+      			}
+      		}
+      	});
+      </script>
     </div>
   </div>
 </div>

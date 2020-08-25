@@ -19,5 +19,25 @@ spring:
     password: a
     driver-class-name: com.mysql.jdbc.Driver
     
+  servlet:
+    multipart:
+      #总文件大小
+      max-request-size:  10MB
+      #单文件大小
+      max-file-size:  10MB
+
+  
+  
+     
+      
+      
+
+
+  
+    
+
+
+
+    
     
 
