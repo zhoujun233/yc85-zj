@@ -121,17 +121,26 @@
     		  commitList:[]
     	  },
     	  created:function(){
-    		  axios.get("query?articleid="+this.articleid).then(res=>{
-    			  this.commitList=res.data.data;
-    		  });
+    		  this.query();
     	  },
     	  methods:{
+    		  query(){
+    			  axios.get("query?articleid="+this.articleid).then(res=>{
+        			  this.commitList=res.data.data;
+        		  });  
+    		  },
     		  commit(){
     			  var params=new URLSearchParams();
     			  params.append("content",this.content);
     			  params.append("articleid",this.articleid);
     			  axios.post("comment.do",params).then(res=>{
-    				 this.commitList.push=res.data.data; 
+    				 if(res.data.code==1){
+    					 this.commitList.push=res.data.data; 
+    				 }else{
+    					 alert(res.data.msg);
+    					 this.query();
+    					 this.content="";
+    				 }
     			  });
     		  },
     	  }
