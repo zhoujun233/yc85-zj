@@ -80,7 +80,7 @@ public class ArticleAction {
 	}
 	
 	//发表文章
-	@PostMapping("addArticle.to")
+	@PostMapping("addArticle.do")
 	public ModelAndView addArticle(@Valid Article a,Errors errors,ModelAndView mav,
 			@SessionAttribute("loginedUser")User user) {
 		if(errors.hasErrors()) {

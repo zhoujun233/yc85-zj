@@ -37,7 +37,7 @@
 	<section class="container">
 		<div class="content-wrap">
 			<div class="content">
-				<form action="addArticle.to" method="post" >
+				<form action="addArticle.do" method="post" >
 				   标题:<span id="err" th:if="${errors}!=null" th:text="${errors.get('title')}"></span><br>
 				   <input name="title" th:value="${Article}!=null?${Article.title}:''"><br>
 				   

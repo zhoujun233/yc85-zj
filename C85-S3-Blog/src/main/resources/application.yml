@@ -8,7 +8,7 @@ logging:
   level:
     com:
       zj:
-        C85S3Springboot:
+        C85S3Blog:
           dao: debug
           web: warn
           
