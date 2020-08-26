@@ -1,5 +1,7 @@
 package com.zj.C85S3Blog.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -18,6 +20,6 @@ public interface UserMapper {
 	public int selectAccount(String account);
 	
 	@Select("select * from user where id=#{id}")
-	public int selectById(int id);
+	public User selectById();
 
 }

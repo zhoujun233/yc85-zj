@@ -18,6 +18,19 @@ public class Comment implements java.io.Serializable{
 	private Article article;
 	
 	
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Article getArticle() {
+		return article;
+	}
+	public void setArticle(Article article) {
+		this.article = article;
+	}
 	public Integer getId() {
 		return id;
 	}

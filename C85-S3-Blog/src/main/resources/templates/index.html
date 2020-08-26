@@ -58,7 +58,7 @@
         <ul class="nav navbar-nav navbar-right" >
           <li> <a data-cont="异清轩首页" href="/">异清轩首页</a></li>
           <li class="hidden-index active" th:each="c : ${clist}">
-          <a  href="index.html" th:text="${c.name}">异清轩首页</a>
+          <a  th:href="'category.do?categoryid='+${c.id}" th:text="${c.name}">异清轩首页</a>
           </li>
         </ul>
         <form class="navbar-form visible-xs" action="/Search" method="post">

@@ -37,5 +37,10 @@ public interface ArticleMapper {
 			+ "#{status},now(),#{readcnt},#{agreecnt})")
 	@Options(useGeneratedKeys = true,keyColumn = "id",keyProperty = "id")
 	public int insert(Article a);
+	
+	
+	@Select("select * from article where categoryid=#{categoryid}")
+	@ResultMap("rmAm")
+	public List<Article> selectByC(int categoryid);
 
 }

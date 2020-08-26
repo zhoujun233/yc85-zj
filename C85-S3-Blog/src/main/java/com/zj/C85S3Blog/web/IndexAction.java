@@ -38,5 +38,17 @@ public class IndexAction {
 
 		return "index";
 	}
+	
+	@GetMapping("category.do")
+	public String category(Model m,int categoryid) {
+		List<Article> list = amapper.selectByC(categoryid);
+		m.addAttribute("alist", list);
+		List<Category>clist=cmapper.selectAll();
+		List<Article> hlist = amapper.selectByHot();
+		m.addAttribute("clist", clist);
+		m.addAttribute("hlist", hlist);
+		return "index";
+		
+	}
 
 }

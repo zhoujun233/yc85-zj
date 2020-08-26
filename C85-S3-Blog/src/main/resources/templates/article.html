@@ -103,7 +103,7 @@
           <li class="comment-content"><span class="comment-f">#1</span>
             <div class="comment-avatar"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
             <div class="comment-main">
-              <p>来自<span class="address">河南郑州</span>的用户<span class="time">(2016-01-06)</span><br />
+              <p>来自<span class="address">河南郑州</span><span>{{c.user.account}}</span><span class="time">({{c.createtime.substring(0,10)}})</span><br />
                    <span>{{c.content}}</span>               </p>
             </div>
           </li>
