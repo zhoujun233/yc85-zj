@@ -100,10 +100,10 @@
       </div>
       <div id="postcomments">
         <ol class="commentlist" v-for="c in commitList">
-          <li class="comment-content"><span class="comment-f">#1</span>
+          <li class="comment-content"><span class="comment-f"></span>
             <div class="comment-avatar"><img class="avatar" src="images/icon/icon.png" alt="" /></div>
             <div class="comment-main">
-              <p>来自<span class="address">河南郑州</span><span>{{c.user.account}}</span><span class="time">({{c.createtime.substring(0,10)}})</span><br />
+              <p><span>{{c.user.account}}</span><span class="time">({{c.createtime.substring(0,10)}})</span><br />
                    <span>{{c.content}}</span>               </p>
             </div>
           </li>
