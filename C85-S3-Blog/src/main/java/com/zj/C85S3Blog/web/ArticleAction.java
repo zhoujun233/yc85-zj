@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -17,10 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zj.C85S3Blog.bean.Article;
 import com.zj.C85S3Blog.bean.Category;
+import com.zj.C85S3Blog.bean.Comment;
 import com.zj.C85S3Blog.bean.User;
 import com.zj.C85S3Blog.biz.ArticleBiz;
+import com.zj.C85S3Blog.biz.CommentBiz;
 import com.zj.C85S3Blog.dao.ArticleMapper;
 import com.zj.C85S3Blog.dao.CategoryMapper;
+import com.zj.C85S3Blog.util.Result;
 import com.zj.C85S3Blog.util.Util;
 
 @RestController
@@ -31,7 +35,10 @@ public class ArticleAction {
 	@Resource
 	private CategoryMapper cmapper;
 	@Resource
-	ArticleBiz abiz;
+	private ArticleBiz abiz;
+	@Resource
+	private CommentBiz cbiz;
+	
 
 	/*
 	 * @GetMapping("article.do") public String article(Model m, int id) {
@@ -100,6 +107,9 @@ public class ArticleAction {
 		return mav;
 
 	}
+	
+	
+	
 	
 	
 	

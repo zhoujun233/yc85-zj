@@ -13,6 +13,11 @@ public class Comment implements java.io.Serializable{
 	private String content;
 	private Integer createby;
 	private Timestamp createtime;
+	//关联查询
+	private User user;
+	private Article article;
+	
+	
 	public Integer getId() {
 		return id;
 	}

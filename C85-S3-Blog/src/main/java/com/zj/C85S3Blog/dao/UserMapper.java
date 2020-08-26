@@ -16,5 +16,8 @@ public interface UserMapper {
 	
 	@Select("select count(*) from user where account=#{account}")
 	public int selectAccount(String account);
+	
+	@Select("select * from user where id=#{id}")
+	public int selectById(int id);
 
 }
