@@ -16,7 +16,11 @@
 <script src="js/nprogress.js"></script>
 <script src="js/jquery.lazyload.min.js"></script>
 <script src="0101util/ckeditor/ckeditor.js"></script>
-
+<style type="text/css">
+#err{
+ color: red;
+}
+</style>
 <!--[if gte IE 9]>
   <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
   <script src="js/html5shiv.min.js" type="text/javascript"></script>
@@ -33,11 +37,17 @@
 	<section class="container">
 		<div class="content-wrap">
 			<div class="content">
-				<form action="" method="post" >
-				   标题: <input name="title"><br>
-				   分类: <input name="categoryid"><br>
-				   标签: <input name="label"><br>
-				   内容:<textarea name="content" id="content"></textarea>
+				<form action="addArticle.to" method="post" >
+				   标题:<span id="err" th:if="${errors}!=null" th:text="${errors.get('title')}"></span><br>
+				   <input name="title" th:value="${Article}!=null?${Article.title}:''"><br>
+				   
+				   分类:<span id="err" th:if="${errors}!=null" th:text="${errors.get('categoryid')}"></span><br>
+				   <input name="categoryid" th:value="${Article}!=null?${Article.categoryid}:''"><br>
+				   
+				   标签:<span id="err" th:if="${errors}!=null" th:text="${errors.get('label')}"></span><br>
+				   <input name="label" th:value="${Article}!=null?${Article.label}:''"><br>
+				   
+				   内容:<span id="err" th:if="${errors}!=null" th:text="${errors.get('content')}"></span><textarea name="content" id="content" th:value="${Article}!=null?${Article.content}:''"></textarea>
 				<script>
                 // Replace the <textarea id="editor1"> with a CKEditor 4
                 // instance, using default configuration.

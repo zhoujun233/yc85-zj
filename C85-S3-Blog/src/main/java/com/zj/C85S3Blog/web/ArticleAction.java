@@ -11,10 +11,14 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zj.C85S3Blog.bean.Article;
 import com.zj.C85S3Blog.bean.Category;
+import com.zj.C85S3Blog.bean.User;
+import com.zj.C85S3Blog.biz.ArticleBiz;
 import com.zj.C85S3Blog.dao.ArticleMapper;
 import com.zj.C85S3Blog.dao.CategoryMapper;
 import com.zj.C85S3Blog.util.Util;
@@ -26,6 +30,8 @@ public class ArticleAction {
 	private ArticleMapper amapper;
 	@Resource
 	private CategoryMapper cmapper;
+	@Resource
+	ArticleBiz abiz;
 
 	/*
 	 * @GetMapping("article.do") public String article(Model m, int id) {
@@ -75,13 +81,20 @@ public class ArticleAction {
 	
 	//发表文章
 	@PostMapping("addArticle.to")
-	public ModelAndView addArticle(@Valid Article a,Errors errors,ModelAndView mav) {
+	public ModelAndView addArticle(@Valid Article a,Errors errors,ModelAndView mav,
+			@SessionAttribute("loginedUser")User user) {
 		if(errors.hasErrors()) {
 			mav.addObject("errors", Util.asMap(errors));
 			mav.addObject("Article", a);
 			mav.setViewName("addArticle");
 		}else {
-			mav.setViewName("article");//展示新文章
+			a.setAuthor(user.getName());
+			abiz.creat(a);
+			//mav.setViewName("article");//展示新文章
+			/**
+			 * 重定向   服务器 action==>article 浏览器    article?id ==》服务器action
+			 */
+			mav.setViewName("redirect:article.do?id=" + a.getId());
 		}
 		
 		return mav;

@@ -15,8 +15,7 @@
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/nprogress.js"></script>
 <script src="js/jquery.lazyload.min.js"></script>
-<script src="0101util/vue.min.js"></script>
-<script src="0101util/axios.min.js"></script>
+
 <!--[if gte IE 9]>
   <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
   <script src="js/html5shiv.min.js" type="text/javascript"></script>
@@ -30,10 +29,13 @@
 
 <body class="user-select">
 <header class="header">
+<script src="0101util/vue.min.js"></script>
+<script src="0101util/axios.min.js"></script>
   <nav class="navbar navbar-default" id="navbar">
     <div class="container">
       <div class="header-topbar hidden-xs link-border">
         <ul class="site-nav topmenu">
+        <li><a href="addArticle">发表文章</a></li>
           <li><a href="tags.html">标签云</a></li>
           <li><a href="readers.html" rel="nofollow">读者墙</a></li>
           <li><a href="links.html" rel="nofollow">友情链接</a></li>
@@ -53,8 +55,9 @@
         <h1 class="logo hvr-bounce-in"><a href="" title=""><img src="images/logo.png" alt=""></a></h1>
       </div>
       <div class="collapse navbar-collapse" id="header-navbar">
-        <ul class="nav navbar-nav navbar-right" th:each="c : ${clist}">
-          <li class="hidden-index active">
+        <ul class="nav navbar-nav navbar-right" >
+          <li> <a data-cont="异清轩首页" href="/">异清轩首页</a></li>
+          <li class="hidden-index active" th:each="c : ${clist}">
           <a  href="index.html" th:text="${c.name}">异清轩首页</a>
           </li>
         </ul>
@@ -261,11 +264,10 @@
       		},
       		methods : {
       			login(){
-      				 var params = new URLSearchParam();
-      				 params.append("account",this.user.account);
+      			    var params = new URLSearchParams();
+      				params.append("account",this.user.account);
       				params.append("pwd",this.user.pwd);
-      				axios.post("login.do",params 
-      				}).then( res => {
+      				axios.post("login.do",params).then( res => {
       					// res.data ==> Result 对象 (  code, msg, data)
       					if(res.data.code == 0){
       						if(res.data.data){
@@ -284,7 +286,7 @@
       						$('#loginModal').modal('hide')
       					}
       				});
-      			}
+      			},
       		}
       	});
       </script>

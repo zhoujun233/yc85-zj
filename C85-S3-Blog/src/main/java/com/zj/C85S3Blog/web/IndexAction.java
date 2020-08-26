@@ -23,7 +23,7 @@ public class IndexAction {
 	@Resource
 	private CategoryMapper cmapper;
 
-	@GetMapping("/")
+	@GetMapping({"/","index.html"})
 	public String index(Model model, @RequestParam(defaultValue = "1") int page) {
 		// 执行查询前，必须先设置分页参数
 		// 注意：必须是在查询方法前，调用设置分页参数
