@@ -13,8 +13,20 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka
   
-
-      
+#yml支持同一文件内部的配置块，使用 --- 分隔每一个配置块, 每个配置块都必须有个名字, 没有名字作为默认配置块
+---
+server:
+  port: 8005
+#配置块  
+spring:
+  profiles: suser8005
+  
+---
+server:
+  port: 8006
+#配置块  
+spring:
+  profiles: suser8006      
 
 
   
