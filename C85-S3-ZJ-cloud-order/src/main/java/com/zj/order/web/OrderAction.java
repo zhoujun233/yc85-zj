@@ -32,5 +32,14 @@ public class OrderAction {
 		return str;
 
 	}
+	@Resource
+	private IUuserAction iua;
+	//声明式远程服务调用
+	@GetMapping("user1")
+	public String user1() {
+		
+		return iua.user();
+
+	}
 
 }
