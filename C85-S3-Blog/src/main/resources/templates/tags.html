@@ -24,6 +24,21 @@
 <!--[if lt IE 9]>
   <script>window.location.href='upgrade-browser.html';</script>
 <![endif]-->
+<style type="text/css">
+#b1 {
+    color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+}
+#err{
+color: red
+}
+</style>
 </head>
 
 <body class="user-select">
@@ -40,57 +55,38 @@
       </ul>
     </div>
   </div>
-  <div class="content">
-    <header class="article-header">
+  <div class="content" >
+    <header class="article-header" >
       <h1 class="article-title">标签云</h1>
     </header>
-    <ul class="plinks ptags" th:each="f : ${flist}">
-      <li><a th:href="'http://'+${f.url}" title="" target="_blank" ><span th:text="${f.description}">这个是标签</span>
-       <span class="badge">42</span></a></li>
+    <table id="app">
+    <tr>
+    <th style="width: 1200px">
+    <ul class="plinks ptags" th:each="f : ${flist}" >
+      <li><a th:href="'http://'+${f.url}" title="" target="_blank" ><span th:text="${f.description}" >这个是标签</span>
+       </a></li>
     </ul>
+    </th>
+    <th >
+    <div style="float: right;position: relative;bottom:20px;right: 70px">
+   <h2> 添加标签云</h2>
+   <br><form action="addFlink.do" method="post">
+       name:<span id="err"  th:if="${errors}!=null" th:text="${errors.get('name')}"></span><br>
+       <input type="text" name="name"  v-model="name" th:value="${Flink}!=null?${Flink.name}:''"><br>
+       url:<span id="err" th:if="${errors}!=null" th:text="${errors.get('url')}"></span><br>
+       <input type="text" name="url" v-model="url" th:value="${Flink}!=null?${Flink.url}:''"><br>
+       description:<span id="err" th:if="${errors}!=null" th:text="${errors.get('description')}"></span><br>
+       <input type="text" name="description" v-model="description" th:value="${Flink}!=null?${Flink.description}:''"><br>
+    <button id="b1" style="margin-right: 50px" type="submit">确定</button></form>
+    </div>
+    </th>
+    </tr>
+    </table>
   </div>
 </section>
 <footer class="footer" th:replace="index::.footer">
   
 </footer>
-<!--微信二维码模态框-->
-<div class="modal fade user-select" id="WeChat" tabindex="-1" role="dialog" aria-labelledby="WeChatModalLabel">
-  <div class="modal-dialog" role="document" style="margin-top:120px;width:280px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
-      </div>
-      <div class="modal-body" style="text-align:center"> <img src="images/weixin.jpg" alt="" style="cursor:pointer"/> </div>
-    </div>
-  </div>
-</div>
-<!--该功能正在日以继夜的开发中-->
-<div class="modal fade user-select" id="areDeveloping" tabindex="-1" role="dialog" aria-labelledby="areDevelopingModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
-      </div>
-      <div class="modal-body"> <img src="images/baoman/baoman_01.gif" alt="深思熟虑" />
-        <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">朕已阅</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="rightClickMenu">
-  <ul class="list-group rightClickMenuList">
-    <li class="list-group-item disabled">欢迎访问异清轩博客</li>
-    <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
-    <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
-    <li class="list-group-item"><span>系统：</span>Windows10 </li>
-    <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
-  </ul>
-</div>
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/jquery.ias.js"></script> 
 <script src="js/scripts.js"></script>

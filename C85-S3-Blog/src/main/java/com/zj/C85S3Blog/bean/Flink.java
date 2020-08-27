@@ -1,5 +1,6 @@
 package com.zj.C85S3Blog.bean;
 
+import javax.validation.constraints.NotEmpty;
 
 public class Flink implements java.io.Serializable{
 	
@@ -8,9 +9,12 @@ public class Flink implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	@NotEmpty
 	private String name;
+	@NotEmpty
 	private String url;
 	private String img;
+	@NotEmpty
 	private String description;
 	private String status;
 	private Integer sort;
