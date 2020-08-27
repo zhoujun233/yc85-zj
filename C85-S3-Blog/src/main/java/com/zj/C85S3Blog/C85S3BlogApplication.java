@@ -28,7 +28,7 @@ public class C85S3BlogApplication implements WebMvcConfigurer{
 		
 		InterceptorRegistration ir=registry.addInterceptor(new LoginInterceptor());
 		ir.addPathPatterns("/addArticle.do","/addArticle","/comment.do",
-				"/toTags");
+				"/toTags","/addFlink.do");
 		
 	}
 	

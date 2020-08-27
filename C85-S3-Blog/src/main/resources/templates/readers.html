@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN"  xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>异清轩博客标签云</title>
+<title>异清轩博客读者墙</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/nprogress.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -24,26 +24,12 @@
 <!--[if lt IE 9]>
   <script>window.location.href='upgrade-browser.html';</script>
 <![endif]-->
-<style type="text/css">
-#b1 {
-    color: #444444;
-    background: #F3F3F3;
-    border: 1px #DADADA solid;
-    padding: 5px 10px;
-    border-radius: 2px;
-    font-weight: bold;
-    font-size: 9pt;
-    outline: none;
-}
-#err{
-color: red
-}
-</style>
 </head>
 
 <body class="user-select">
 <header class="header" th:replace="index::.header">
- 
+  
+  
 </header>
 <section class="container container-page">
   <div class="pageside">
@@ -55,38 +41,25 @@ color: red
       </ul>
     </div>
   </div>
-  <div class="content" >
-    <header class="article-header" >
-      <h1 class="article-title">标签云</h1>
+  <div class="content">
+    <header class="article-header">
+      <h1 class="article-title">读者墙</h1>
     </header>
-    <table id="app">
-    <tr>
-    <th style="width: 1200px">
-    <ul class="plinks ptags" th:each="f : ${flist}" >
-      <li><a th:href="'http://'+${f.url}" title="" target="_blank" ><span th:text="${f.description}" >这个是标签</span>
-       </a></li>
-    </ul>
-    </th>
-    <th >
-    <div style="float: right;position: relative;bottom:20px;right: 70px">
-   <h2> 添加标签云</h2>
-   <br><form action="addFlink.do" method="post">
-       name:<span id="err"  th:if="${errors}!=null" th:text="${errors.get('name')}"></span><br>
-       <input type="text" name="name"  v-model="name" th:value="${Flink}!=null?${Flink.name}:''"><br>
-       url:<span id="err" th:if="${errors}!=null" th:text="${errors.get('url')}"></span><br>
-       <input type="text" name="url" v-model="url" th:value="${Flink}!=null?${Flink.url}:''"><br>
-       description:<span id="err" th:if="${errors}!=null" th:text="${errors.get('description')}"></span><br>
-       <input type="text" name="description" v-model="description" th:value="${Flink}!=null?${Flink.description}:''"><br>
-    <button id="b1" style="margin-right: 50px" type="submit">确定</button></form>
-    </div>
-    </th>
-    </tr>
-    </table>
+    <div class="readers"> <a class="item-readers item-readers-1" target="_blank" href="" rel="nofollow">
+      <h4>【金牌读者】<small>评论：123</small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> <a class="item-readers item-readers-2" target="_blank" href="" rel="nofollow">
+      <h4>【银牌读者】<small>评论：12</small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> <a class="item-readers item-readers-3" target="_blank" href="" rel="nofollow">
+      <h4>【铜牌读者】<small>评论：8</small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> <a class="item-readers item-readers-4" target="_blank" href="" rel="nofollow">
+      <h4>【普通读者】<small>评论：1</small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> </div>
   </div>
 </section>
 <footer class="footer" th:replace="index::.footer">
   
 </footer>
+
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/jquery.ias.js"></script> 
 <script src="js/scripts.js"></script>
