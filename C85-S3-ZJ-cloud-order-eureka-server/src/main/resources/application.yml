@@ -1,31 +1,32 @@
+  
 server:
-  port: 8000
-
+   port: 8000
+   
 spring:
-  application:
-    name: server
-
+   application:
+      name: server
+      
 eureka:
-  instance:
-    hostname: es1
-  client:
-    
-    serviceUrl:
-      defaultZone: http://es2:7999/eureka
-
+   instance:
+      hostname: es1
+   client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl:
+         defaultZone: http://es2:7999/eureka
+      server:
+         enable-self-preservation: false
 ---
 spring:
-  profiles: server1
-  
+   profiles: server1
 server:
-  port: 7999
-  
+   port: 7999
 eureka:
-  instance:
-    hostname: es2
-  client:
-    serviceUrl:
-      defaultZone: http://es1:8000/eureka 
+   instance:
+      hostname: es2
+   client:
+      serviceUrl:
+         defaultZone: http://es1:8000/eureka
 ---
 spring:
    profiles: server2
