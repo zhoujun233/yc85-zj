@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 @RestController
 public class OrderAction {
 
@@ -25,6 +27,8 @@ public class OrderAction {
 	 * 				http://order/user  
 	 */
 	@GetMapping("user")
+	// 服务降级
+	@HystrixCommand(fallbackMethod="fbUser")
 	public String user() {
 		//String url = "http://127.0.0.1:8001/user";
 		String url = "http://suser/user";//// 系统内部的远程调用地址
@@ -32,6 +36,16 @@ public class OrderAction {
 		return str;
 
 	}
+	//降级后执行的方法
+	public String fbUser() {
+		
+		return "降级后执行的方法";
+
+	}
+	
+	
+	
+	
 	@Resource
 	private IUuserAction iua;
 	//声明式远程服务调用
