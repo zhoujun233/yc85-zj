@@ -63,6 +63,8 @@ public class ArticleAction {
 		List<Article> hlist = amapper.selectByHot();
 		Article art = amapper.selectById(id);
 		
+		amapper.updateById(id);
+		
 		mav.addObject("art", art);
 		mav.addObject("hlist", hlist);
 		mav.addObject("clist", clist);

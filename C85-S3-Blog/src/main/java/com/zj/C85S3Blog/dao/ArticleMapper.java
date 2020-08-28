@@ -9,8 +9,10 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.zj.C85S3Blog.bean.Article;
+import com.zj.C85S3Blog.bean.User;
 
 public interface ArticleMapper {
 	
@@ -34,7 +36,7 @@ public interface ArticleMapper {
 	
 	@Insert("insert into article values (#{id},#{author},#{title},#{content},"
 			+ "#{keywords},#{description},#{categoryid},#{label},#{titleimgs},"
-			+ "#{status},now(),#{readcnt},#{agreecnt})")
+			+ "#{status},now(),1,0)")
 	@Options(useGeneratedKeys = true,keyColumn = "id",keyProperty = "id")
 	public int insert(Article a);
 	
@@ -42,5 +44,8 @@ public interface ArticleMapper {
 	@Select("select * from article where categoryid=#{categoryid}")
 	@ResultMap("rmAm")
 	public List<Article> selectByC(int categoryid);
+	
+	@Update("update article set readcnt=readcnt+1 where id=#{id} ")
+	public void updateById(int id);
 
 }

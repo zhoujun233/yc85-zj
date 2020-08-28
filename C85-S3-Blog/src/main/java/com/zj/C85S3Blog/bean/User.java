@@ -29,8 +29,18 @@ public class User implements java.io.Serializable {
 	private String email;
 	private String head;
 	private Timestamp createtime;
-	private String status;
+	private Integer commits;
 	private String type;
+	
+	public Integer getCommits() {
+		return commits;
+	}
+
+	public void setCommits(Integer commits) {
+		this.commits = commits;
+	}
+
+	
 
 	public Integer getId() {
 		return id;
@@ -96,13 +106,7 @@ public class User implements java.io.Serializable {
 		this.createtime = createtime;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 
 	public String getType() {
 		return type;

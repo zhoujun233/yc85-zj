@@ -45,15 +45,29 @@
     <header class="article-header">
       <h1 class="article-title">读者墙</h1>
     </header>
-    <div class="readers"> <a class="item-readers item-readers-1" target="_blank" href="" rel="nofollow">
-      <h4>【金牌读者】<small>评论：123</small></h4>
-      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> <a class="item-readers item-readers-2" target="_blank" href="" rel="nofollow">
-      <h4>【银牌读者】<small>评论：12</small></h4>
-      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> <a class="item-readers item-readers-3" target="_blank" href="" rel="nofollow">
-      <h4>【铜牌读者】<small>评论：8</small></h4>
-      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> <a class="item-readers item-readers-4" target="_blank" href="" rel="nofollow">
-      <h4>【普通读者】<small>评论：1</small></h4>
-      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt=""><strong>异清轩</strong>http://www.ylsat.com/</a> </div>
+    <div class="readers" > 
+    <a class="item-readers item-readers-1"  href="" rel="nofollow" th:each="g:${glist}">
+      <h4>【<span th:text="${g.type}"></span>】 评论：<small th:text="${g.commits}"></small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt="">
+      <strong><span th:text="${g.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
+  </div>
+  <div class="readers" > 
+    <a class="item-readers item-readers-2"  href="" rel="nofollow" th:each="y:${ylist}">
+      <h4>【<span th:text="${y.type}"></span>】 评论：<small th:text="${y.commits}"></small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt="">
+      <strong><span th:text="${y.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
+  </div>
+  <div class="readers" > 
+    <a class="item-readers item-readers-3"  href="" rel="nofollow" th:each="t:${tlist}">
+      <h4>【<span th:text="${t.type}"></span>】 评论：<small th:text="${t.commits}"></small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt="">
+      <strong><span th:text="${t.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
+  </div>
+  <div class="readers" > 
+    <a class="item-readers item-readers-4"  href="" rel="nofollow" th:each="c1:${c1list}">
+      <h4>【<span th:text="${c1.type}"></span>】 评论：<small th:text="${c1.commits}"></small></h4>
+      <img class="avatar" height="36" width="36" src="images/icon/icon.png" alt="">
+      <strong><span th:text="${c1.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
   </div>
 </section>
 <footer class="footer" th:replace="index::.footer">

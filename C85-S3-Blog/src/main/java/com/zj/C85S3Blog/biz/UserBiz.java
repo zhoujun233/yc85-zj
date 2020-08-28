@@ -19,8 +19,8 @@ public class UserBiz {
 		if (umapper.selectAccount(user.getAccount()) > 0) {
 			throw new BizException("该用户名已存在");
 		}
-
-		umapper.insert(user);
+		 user.setType("普通读者"); 
+		umapper.add(user);
 
 	}
 
