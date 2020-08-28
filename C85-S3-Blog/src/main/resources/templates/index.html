@@ -38,7 +38,7 @@
         <li><a href="addArticle">发表文章</a></li>
           <li><a href="toTags">标签云</a></li>
           <li><a href="read" rel="nofollow">读者墙</a></li>
-          <li><a href="links.html" rel="nofollow">友情链接</a></li>
+          <li><a href="link" rel="nofollow">友情链接</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" rel="nofollow">关注本站 <span class="caret"></span></a>
             <ul class="dropdown-menu header-topbar-dropdown-menu">
               <li><a data-toggle="modal" data-target="#WeChat" rel="nofollow"><i class="fa fa-weixin"></i> 微信</a></li>
@@ -107,7 +107,7 @@
       </div>
       
       <article class="excerpt excerpt-1 post" th:each="a : ${alist}">
-      <a class="focus" th:href="'article.do?id='+${a.id}" title=""><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></a>
+      <a class="focus" th:href="'article.do?id='+${a.id}" title=""><img class="thumb" data-original="images/excerpt.jpg" src="/images/excerpt.jpg" alt=""></a>
         <header><a class="cat" href="program" th:text="${a.category.name}">后端程序<i></i></a>
           <h2><a th:href="'article.do?id='+${a.id}" title="" th:text="${a.title}">php如何判断一个日期的格式是否正确</a></h2>
         </header>
@@ -129,15 +129,14 @@
       
     </div>
   </div>
-  <aside class="sidebar">
+  <aside class="sidebar" >
     <div class="fixed">
       <div class="widget widget-tabs">
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">网站公告</a></li>
-          <li role="presentation"><a href="#centre" aria-controls="centre" role="tab" data-toggle="tab">会员中心</a></li>
           <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">联系站长</a></li>
         </ul>
-        <div class="tab-content">
+        <div class="tab-content" >
           <div role="tabpanel" class="tab-pane notice active" id="notice">
             <ul>
               <li>
@@ -150,10 +149,6 @@
                 <time datetime="2016-01-04">01-04</time>
                 <a target="_blank" href="">在这个小工具中最多可以调用五条</a></li>
             </ul>
-          </div>
-          <div role="tabpanel" class="tab-pane centre" id="centre">
-            <h4>需要登录才能进入会员中心</h4>
-            <p> <a data-toggle="modal" data-target="#loginModal" class="btn btn-primary">立即登录</a> <a href="javascript:;" class="btn btn-default">现在注册</a> </p>
           </div>
           <div role="tabpanel" class="tab-pane contact" id="contact">
             <h2>Email:<br />
@@ -189,7 +184,7 @@
         <span class="muted"><i class="glyphicon glyphicon-time">
         </i> <span th:text="${h.createtime}">2016-1-4</span> </span>
         <span class="muted" th:text="${h.readcnt}"><i class="glyphicon glyphicon-eye-open">
-        </i> 120</span></a></li>
+        </i><span th:text="${h.agreecnt}"> 120</span></span></a></li>
       </ul>
     </div>
   </aside>
@@ -209,7 +204,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
       </div>
-      <div class="modal-body" style="text-align:center"> <img src="images/weixin.jpg" alt="" style="cursor:pointer"/> </div>
+      <div class="modal-body" style="text-align:center"> <img src="/images/weixin.jpg" alt="" style="cursor:pointer"/> </div>
     </div>
   </div>
 </div>
@@ -221,7 +216,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
       </div>
-      <div class="modal-body"> <img src="images/baoman/baoman_01.gif" alt="深思熟虑" />
+      <div class="modal-body"> <img src="/images/baoman/baoman_01.gif" alt="深思熟虑" />
         <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
       </div>
       <div class="modal-footer">

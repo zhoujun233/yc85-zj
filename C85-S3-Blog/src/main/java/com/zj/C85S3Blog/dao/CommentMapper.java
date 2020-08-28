@@ -20,7 +20,10 @@ public interface CommentMapper {
 			@Result(id=true,property = "id",column = "id"),
 			@Result(property = "createby",column = "createby"),
 			@Result(property = "user",column = "createby",
-			one=@One(select = "com.zj.C85S3Blog.dao.UserMapper.selectById"))
+			one=@One(select = "com.zj.C85S3Blog.dao.UserMapper.selectById")),
+			@Result(property = "article",column = "articleid",
+			one=@One(select = "com.zj.C85S3Blog.dao.ArticleMapper.selectById"))
+			
 	})
 	public List<Comment> select(int articleid);
 

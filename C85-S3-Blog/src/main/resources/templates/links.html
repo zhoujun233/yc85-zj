@@ -5,7 +5,7 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>异清轩博客读者墙</title>
+<title>异清轩博客友情链接</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/nprogress.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -29,7 +29,6 @@
 <body class="user-select">
 <header class="header" th:replace="index::.header">
   
-  
 </header>
 <section class="container container-page">
   <div class="pageside">
@@ -44,31 +43,12 @@
   </div>
   <div class="content">
     <header class="article-header">
-      <h1 class="article-title">读者墙</h1>
+      <h1 class="article-title">友情链接</h1>
     </header>
-    <div class="readers" > 
-    <a class="item-readers item-readers-1"  href="" rel="nofollow" th:each="g:${glist}">
-      <h4>【<span th:text="${g.type}"></span>】 评论：<small th:text="${g.commits}"></small></h4>
-      <img class="avatar" height="36" width="36" src="/images/icon/icon.png" alt="">
-      <strong><span th:text="${g.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
-  </div>
-  <div class="readers" > 
-    <a class="item-readers item-readers-2"  href="" rel="nofollow" th:each="y:${ylist}">
-      <h4>【<span th:text="${y.type}"></span>】 评论：<small th:text="${y.commits}"></small></h4>
-      <img class="avatar" height="36" width="36" src="/images/icon/icon.png" alt="">
-      <strong><span th:text="${y.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
-  </div>
-  <div class="readers" > 
-    <a class="item-readers item-readers-3"  href="" rel="nofollow" th:each="t:${tlist}">
-      <h4>【<span th:text="${t.type}"></span>】 评论：<small th:text="${t.commits}"></small></h4>
-      <img class="avatar" height="36" width="36" src="/images/icon/icon.png" alt="">
-      <strong><span th:text="${t.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
-  </div>
-  <div class="readers" > 
-    <a class="item-readers item-readers-4"  href="" rel="nofollow" th:each="c1:${c1list}">
-      <h4>【<span th:text="${c1.type}"></span>】 评论：<small th:text="${c1.commits}"></small></h4>
-      <img class="avatar" height="36" width="36" src="/images/icon/icon.png" alt="">
-      <strong><span th:text="${c1.account}">异清轩<span></strong>http://www.ylsat.com/</a> 
+    <ul class="plinks">
+      <li><a href="http://www.csdn.net" title=""  rel="nofollow"><img src="images/icon/favicon.ico" alt="">CSDN</a></li>
+      
+    </ul>
   </div>
 </section>
 <footer class="footer" th:replace="index::.footer">

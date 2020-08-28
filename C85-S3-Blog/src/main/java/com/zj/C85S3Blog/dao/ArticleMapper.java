@@ -47,5 +47,12 @@ public interface ArticleMapper {
 	
 	@Update("update article set readcnt=readcnt+1 where id=#{id} ")
 	public void updateById(int id);
+	
+	@Update("update article set agreecnt=agreecnt+1 where id=#{id} ")
+	public void updateById1(Article a);
+	
+	@Select("select * from article where author=#{author}")
+	@ResultMap("rmAm")
+	public List<Article> selectByA(String author);
 
 }

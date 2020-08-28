@@ -28,5 +28,11 @@ public interface UserMapper {
 
 	@Update("update user set type=#{type} where id=#{id} ")
 	public void updateById1(User user);
+	
+	@Select("select * from user where id=#{id}")
+	public User selectById1(int id);
+	
+	@Update("update user set head=#{head} where id=#{id} ")
+	public void updatehead(String head,int id);
 
 }
