@@ -9,10 +9,17 @@
 
 	<parent>
 		<groupId>com.zj</groupId>
-		<artifactId>C85-S3-CRBook-parent1</artifactId>
+		<artifactId>C85-S3-CRBook-parent2</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+	<dependencies>
+		<!-- thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+	</dependencies>
 
 	
 
