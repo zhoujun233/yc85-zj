@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //服务降级注解
 @EnableCircuitBreaker
 //开启Redis会话共享
-@EnableRedisHttpSession
+//@EnableRedisHttpSession
 @SpringBootApplication
 public class UserApplication {
 

@@ -19,7 +19,8 @@ public class UserBiz {
 		if (umapper.selectAccount(user.getAccount()) > 0) {
 			throw new BizException("该用户名已存在");
 		}
-		 user.setType("普通读者"); 
+		user.setType("普通读者");
+		user.setHead("/images/0.jpg");
 		umapper.add(user);
 
 	}

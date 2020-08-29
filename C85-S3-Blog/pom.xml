@@ -32,6 +32,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- 邮件发送启动器 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 		<!--springboot-starter-web去掉了validation依赖     数据校验依赖需要单独引入 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

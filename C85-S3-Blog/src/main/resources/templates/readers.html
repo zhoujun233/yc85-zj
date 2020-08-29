@@ -39,6 +39,7 @@
         <li><a href="read">读者墙</a></li>
         <li><a href="link">友情链接</a></li>
          <li><a href="userinfo">个人信息</a></li>
+         <li><a href="osad" th:if="${session.loginedUser.name}=='admin'">网站公告</a></li>
       </ul>
     </div>
   </div>

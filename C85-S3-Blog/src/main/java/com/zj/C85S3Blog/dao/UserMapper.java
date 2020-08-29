@@ -34,5 +34,8 @@ public interface UserMapper {
 	
 	@Update("update user set head=#{head} where id=#{id} ")
 	public void updatehead(String head,int id);
+	
+	@Update("update user set pwd=#{pwd} where account=#{account} ")
+	public void updatepwd(String pwd,String account);
 
 }
