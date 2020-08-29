@@ -17,10 +17,14 @@ eureka:
 # http://es3/order/order ==>   http://es1:8002/order
 
 zuul:
+  # 后面不定义配置参数, 表示 无敏感头 ==> 空集合
+  # 全局敏感头设定
+  sensitiveHeaders:
+
   routes:
     # 忽略路由
-    ignoredServices: '*'
-    ignoredPatterns: /simple/**
+    #ignoredServices: '*'
+    #ignoredPatterns: /simple/**
      # 路由名 (简单路由)
     simple:
        # 映射地址
@@ -36,10 +40,14 @@ zuul:
        url: forward:/test
 
     # 路由名(Ribbon路由)
-    #user:
+    user:
       # 对应接口的地址  /** 表示所有的接口(包含子目录)
-      #path: /user/**
-      #serviceId: suser
+      path: /user/**
+      serviceId: suser
+      # 敏感头设置,  数据类型是集合
+      # sensitiveHeaders: Authorization
+      # 后面不定义配置参数, 表示 无敏感头 ==> 空集合
+      #sensitiveHeaders:  
       
     # 路由名
     #order:
@@ -56,6 +64,16 @@ zuul:
     #  默认路由
     # http://127.0.0.1/  ==> http://www.hyycinfo.com
     # http://127.0.0.1/test/test  ==> http://www.hyycinfo.com/test/test 404
-    legacy:
-      path: /**
-      url: http://www.hyycinfo.com  
+    #legacy:
+      #path: /**
+      #url: http://www.hyycinfo.com  
+hystrix:
+   command:
+      default:
+         execution:
+            isolation:
+               thread:
+                  timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
