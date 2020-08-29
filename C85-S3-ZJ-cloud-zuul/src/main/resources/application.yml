@@ -18,14 +18,44 @@ eureka:
 
 zuul:
   routes:
-    # 路由名
-    user:
+    # 忽略路由
+    ignoredServices: '*'
+    ignoredPatterns: /simple/**
+     # 路由名 (简单路由)
+    simple:
+       # 映射地址
+       path: /simple/163
+       # 简单路由 url 地址 使用  http 和 https 开头的地址
+       url: http://www.163.com
+
+    # 路由名(跳转路由)  跳转到当前项目的某个action方法
+    forward:
+       # 映射地址
+       path: /forward/**
+       # 使用forward:开头
+       url: forward:/test
+
+    # 路由名(Ribbon路由)
+    #user:
       # 对应接口的地址  /** 表示所有的接口(包含子目录)
-      path: /user/**
-      serviceId: suser
+      #path: /user/**
+      #serviceId: suser
       
     # 路由名
-    order:
+    #order:
       # 对应接口的地址  /** 表示所有的接口(包含子目录)
-      path: /order/**
-      serviceId: sorder
+      #path: /order/**
+      #serviceId: sorder
+      
+     # Ribbon 格式三
+    # order: /odr/**
+
+    # Ribbon 格式四 ==> Zuul会将 注册服务器中的 服务名直接映射成路由
+    # order ==  order.path=order/**
+
+    #  默认路由
+    # http://127.0.0.1/  ==> http://www.hyycinfo.com
+    # http://127.0.0.1/test/test  ==> http://www.hyycinfo.com/test/test 404
+    legacy:
+      path: /**
+      url: http://www.hyycinfo.com  
