@@ -12,7 +12,6 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 //开启定时任务
 @EnableScheduling
 public class C85S3SpringbootApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(C85S3SpringbootApplication.class, args);
 	}
