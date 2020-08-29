@@ -16,10 +16,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //开启Redis会话共享
 //@EnableRedisHttpSession
 @SpringBootApplication
-public class CrbookApplication {
+public class CrbookZuulApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CrbookApplication.class, args);
+		SpringApplication.run(CrbookZuulApplication.class, args);
 	}
 
 
