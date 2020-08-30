@@ -17,4 +17,5 @@ public class FlinkBiz {
 		return fmapper.insert(f);
 	}
 
+	
 }

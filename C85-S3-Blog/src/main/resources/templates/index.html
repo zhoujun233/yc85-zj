@@ -48,8 +48,8 @@
           </li>
         </ul>
         <a data-toggle="modal" th:text="${session.loginedUser} != null ? '你好 '+${session.loginedUser.name} : 'Hi,请登录'"  data-target="#loginModal" class="login" rel="nofollow">Hi,请登录</a>&nbsp;&nbsp;
-        <a href="toreg" class="register" rel="nofollow" th:if="${session.loginedUser} == null">我要注册</a>&nbsp;&nbsp;
-        <a href="findpwd" rel="nofollow" th:if="${session.loginedUser} != null">找回密码</a> </div>
+        <a href="toreg" class="register" rel="nofollow" >我要注册</a>&nbsp;&nbsp;
+        <a href="findpwd" rel="nofollow" >找回密码</a> </div>
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
         <h1 class="logo hvr-bounce-in"><a href="" title=""><img src="/images/logo.png" alt=""></a></h1>
@@ -98,8 +98,11 @@
         </div>
         <a class="left carousel-control" href="#focusslide" role="button" data-slide="prev" rel="nofollow"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">上一个</span> </a> <a class="right carousel-control" href="#focusslide" role="button" data-slide="next" rel="nofollow"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">下一个</span> </a> </div>
       <article class="excerpt-minic excerpt-minic-index">
-        <h2><span class="red">【今日推荐】</span><a href="" title="">从下载看我们该如何做事</a></h2>
-        <p class="note">一次我下载几部电影，发现如果同时下载多部要等上几个小时，然后我把最想看的做个先后排序，去设置同时只能下载一部，结果是不到一杯茶功夫我就能看到最想看的电影。 这就像我们一段时间内想干成很多事情，是同时干还是有选择有顺序的干，结果很不一样。同时...</p>
+        <h2><span class="red">【今日推荐】</span><a th:href="${sp.url}" title="" target="_blank"><span th:text="${sp.title}">从下载看我们该如何做事</span></a></h2>
+        <p class="note" ><span th:text="${sp.content}">一次我下载几部电影，
+        发现如果同时下载多部要等上几个小时，然后我把最想看的做个先后排序，
+        去设置同时只能下载一部，结果是不到一杯茶功夫我就能看到最想看的电影。 
+        这就像我们一段时间内想干成很多事情，是同时干还是有选择有顺序的干，结果很不一样。同时...</span>...</p>
       </article>
       <div class="title">
         <h3>最新发布</h3>
@@ -169,9 +172,10 @@
     <div class="widget widget_sentence">
       <h3>每日一句</h3>
       <div class="widget-sentence-content">
-        <h4>2016年01月05日星期二</h4>
-        <p>Do not let what you cannot do interfere with what you can do.<br />
-          别让你不能做的事妨碍到你能做的事。（John Wooden）</p>
+        <h4><span th:text="${os.createtime}">2016年01月05日星期二</span></h4>
+        <p><span th:text="${os.estatement}" style="font-size: 1.5em">Do not let what you cannot do interfere with what you can do.</span><br />
+          <span th:text="${os.statement}" style="font-size: 1.4em">别让你不能做的事妨碍到你能做的事。</span>
+          （<span th:text="${os.author}" style="font-size: 1.3em">John Wooden</span>）</p>
       </div>
     </div>
     <div class="widget widget_hot">

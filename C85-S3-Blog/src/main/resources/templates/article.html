@@ -85,7 +85,7 @@
       <div id="respond">
         <form action="" method="post" id="comment-form">
           <div class="comment">
-            <div class="comment-title"><img class="avatar" th:src="${session.loginedUser.head}" alt="" /></div>
+            <div class="comment-title"><img class="avatar" th:src="${user1.head}" alt="" /></div>
             <div class="comment-box">
               <textarea v-model="content" placeholder="您的评论可以一针见血" name="comment" id="comment-textarea" cols="100%" rows="3" tabindex="1" ></textarea>
               <input type="hidden" v-model="articleid" th:value="art.id">

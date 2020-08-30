@@ -18,6 +18,8 @@ public class Flink implements java.io.Serializable{
 	private String description;
 	private String status;
 	private Integer sort;
+	private Integer userid;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -59,6 +61,12 @@ public class Flink implements java.io.Serializable{
 	}
 	public void setSort(Integer sort) {
 		this.sort = sort;
+	}
+	public Integer getUserid() {
+		return userid;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 	
 	

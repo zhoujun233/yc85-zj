@@ -56,11 +56,43 @@ color: red
       </ul>
     </div>
   </div>
-  <div class="content" style="width: 1100px">
+  <div class="content" style="width: 1100px;background-color: #F8F8FF" >
     <header class="article-header">
-      <h1 class="article-title">个人信息</h1>
+      <h1 class="article-title">今日推荐+每日一句</h1>
     </header>
+    <div><form action="daysput.do" method="post">
     
+    <span style="font-size: 1.2em">标题：<span id="err" th:if="${errors}!=null" th:text="${errors.get('title')}"></span></span><br>
+    <input name="title" th:value="${sp}!=null?${sp.title}:''" style="width: 200px;height: 30px"><br>
+    
+    <span style="font-size: 1.2em">内容简略：<span id="err" th:if="${errors}!=null" th:text="${errors.get('content')}"></span></span><br>
+    <textarea name="content" th:value="${sp}!=null?${sp.content}:''" style="width: 200px;height: 100px">
+    </textarea>
+    <br>
+    
+    <span style="font-size: 1.2em">url：<span id="err" th:if="${errors}!=null" th:text="${errors.get('url')}"></span></span><br>
+    <input name="url" th:value="${sp}!=null?${sp.url}:''" style="width: 200px;height: 30px"><br>
+    
+    <button id="b1">提交</button>
+    
+    </form></div>
+    
+    <div style="position: relative;left: 300px;bottom: 270px"><form action="osad.do" method="post">
+    
+    <span style="font-size: 1.2em">中文句子：<span id="err" th:if="${errors}!=null" th:text="${errors.get('statement')}"></span></span><br>
+    <input name="statement" th:value="${os}!=null?${os.statement}:''" style="width: 200px;height: 30px"><br>
+    
+    <span style="font-size: 1.2em">英文句子：<span id="err" th:if="${errors}!=null" th:text="${errors.get('estatement')}"></span></span><br>
+    <input name="estatement" th:value="${os}!=null?${os.estatement}:''" style="width: 200px;height: 30px">
+    
+    <br>
+    
+    <span style="font-size: 1.2em">作者：<span id="err" th:if="${errors}!=null" th:text="${errors.get('author')}"></span></span><br>
+    <input name="author" th:value="${os}!=null?${os.author}:''" style="width: 200px;height: 30px"><br>
+    
+    <button id="b1">提交</button>
+    
+    </form></div>
       
       
      

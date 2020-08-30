@@ -19,11 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.zj.C85S3Blog.bean.Article;
 import com.zj.C85S3Blog.bean.Category;
 import com.zj.C85S3Blog.bean.Comment;
+import com.zj.C85S3Blog.bean.Osad;
 import com.zj.C85S3Blog.bean.User;
 import com.zj.C85S3Blog.biz.ArticleBiz;
 import com.zj.C85S3Blog.biz.CommentBiz;
 import com.zj.C85S3Blog.dao.ArticleMapper;
 import com.zj.C85S3Blog.dao.CategoryMapper;
+import com.zj.C85S3Blog.dao.OsdaMapper;
+import com.zj.C85S3Blog.dao.UserMapper;
 import com.zj.C85S3Blog.util.Result;
 import com.zj.C85S3Blog.util.Util;
 
@@ -38,6 +41,11 @@ public class ArticleAction {
 	private ArticleBiz abiz;
 	@Resource
 	private CommentBiz cbiz;
+	
+	@Resource
+	private OsdaMapper omapper;
+	@Resource
+	private UserMapper umapeer;
 	
 
 	/*
@@ -58,17 +66,20 @@ public class ArticleAction {
  * @return
  */
 	@GetMapping("article.do")
-	public ModelAndView Article(ModelAndView mav, int id) {
+	public ModelAndView Article(ModelAndView mav, int id,@SessionAttribute("loginedUser") User user) {
 		List<Category> clist = cmapper.selectAll();
 		List<Article> hlist = amapper.selectByHot();
 		Article art = amapper.selectById(id);
-		
+		Osad os=omapper.selectById();
 		amapper.updateById(id);
+		User user1=umapeer.selectById(user);
 		
 		mav.addObject("art", art);
 		mav.addObject("hlist", hlist);
 		mav.addObject("clist", clist);
 		mav.setViewName("article");
+		mav.addObject("os", os);
+		mav.addObject("user1", user1);
 		
 		return mav;
 
@@ -79,9 +90,10 @@ public class ArticleAction {
 	public ModelAndView toArticle(ModelAndView mav) {
 		List<Category> clist = cmapper.selectAll();
 		List<Article> hlist = amapper.selectByHot();
-		
+		Osad os=omapper.selectById();
 		mav.addObject("hlist", hlist);
 		mav.addObject("clist", clist);
+		mav.addObject("os", os);
 		mav.setViewName("addArticle");
 		
 		return mav;
@@ -93,6 +105,12 @@ public class ArticleAction {
 	public ModelAndView addArticle(@Valid Article a,Errors errors,ModelAndView mav,
 			@SessionAttribute("loginedUser")User user) {
 		if(errors.hasErrors()) {
+			List<Category> clist = cmapper.selectAll();
+			List<Article> hlist = amapper.selectByHot();
+			Osad os=omapper.selectById();
+			mav.addObject("hlist", hlist);
+			mav.addObject("clist", clist);
+			mav.addObject("os", os);
 			mav.addObject("errors", Util.asMap(errors));
 			mav.addObject("Article", a);
 			mav.setViewName("addArticle");

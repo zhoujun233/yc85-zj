@@ -21,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zj.C85S3Blog.bean.Article;
 import com.zj.C85S3Blog.bean.Category;
+import com.zj.C85S3Blog.bean.Osad;
 import com.zj.C85S3Blog.dao.ArticleMapper;
 import com.zj.C85S3Blog.dao.CategoryMapper;
+import com.zj.C85S3Blog.dao.OsdaMapper;
 import com.zj.C85S3Blog.dao.UserMapper;
 import com.zj.C85S3Blog.util.Result;
 import com.zj.C85S3Blog.util.SendMail;
@@ -40,13 +42,17 @@ public class FindPwdAction {
 	private RedisTemplate<String, String> rt;
 	@Resource
 	private UserMapper umapper;
+	@Resource
+	private OsdaMapper omapper;
 
 	@GetMapping("findpwd")
 	public ModelAndView toreg(ModelAndView m) {
 		List<Category> clist = cmapper.selectAll();
 		List<Article> hlist = amapper.selectByHot();
+		Osad os=omapper.selectById();
 		m.addObject("hlist", hlist);
 		m.addObject("clist", clist);
+		m.addObject("os", os);
 		m.setViewName("findpwd");
 		return m;
 	}

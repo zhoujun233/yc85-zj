@@ -23,11 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.zj.C85S3Blog.bean.Article;
 import com.zj.C85S3Blog.bean.Category;
+import com.zj.C85S3Blog.bean.Osad;
 import com.zj.C85S3Blog.bean.User;
 import com.zj.C85S3Blog.biz.BizException;
 import com.zj.C85S3Blog.biz.UserBiz;
 import com.zj.C85S3Blog.dao.ArticleMapper;
 import com.zj.C85S3Blog.dao.CategoryMapper;
+import com.zj.C85S3Blog.dao.OsdaMapper;
 import com.zj.C85S3Blog.util.Result;
 import com.zj.C85S3Blog.util.Util;
 
@@ -40,6 +42,8 @@ public class UserAction {
 	private ArticleMapper amapper;
 	@Resource
 	private CategoryMapper cmapper;
+	@Resource
+	private OsdaMapper omapper;
 
 	/**
 	 * 注册 : 表单提交 ==> 页面跳转 Errors 报错所有的验证错误信息, 默认会被推送页面
@@ -52,7 +56,12 @@ public class UserAction {
 		if (errors.hasErrors()) {
 			m.addAttribute("errors", Util.asMap(errors));
 			m.addAttribute("user", user);
-
+			List<Category> clist = cmapper.selectAll();
+			List<Article> hlist = amapper.selectByHot();
+			Osad os=omapper.selectById();
+			m.addAttribute("hlist", hlist);
+			m.addAttribute("clist", clist);
+			m.addAttribute("os", os);
 			return "reg";
 		}
 		try {
@@ -62,7 +71,12 @@ public class UserAction {
 			errors.rejectValue("account", "account", e.getMessage());
 			m.addAttribute("errors", Util.asMap(errors));
 			m.addAttribute("user", user);
-
+			List<Category> clist = cmapper.selectAll();
+			List<Article> hlist = amapper.selectByHot();
+			Osad os=omapper.selectById();
+			m.addAttribute("hlist", hlist);
+			m.addAttribute("clist", clist);
+			m.addAttribute("os", os);
 			return "reg";
 		}
 		// index 请求转发方式跳转到 index
@@ -77,18 +91,12 @@ public class UserAction {
 		List<Article> hlist = amapper.selectByHot();
 		m.addAttribute("hlist", hlist);
 		m.addAttribute("clist", clist);
+		Osad os=omapper.selectById();
+		m.addAttribute("os", os);
 		return "reg";
 	}
 
-	@PostMapping("upload.do")
-	//@ResponseBody
-	public String upload(@RequestParam("file") MultipartFile file,Model m) throws IllegalStateException, IOException {
-		String dispath = "E:/images/";
-		String filename = file.getOriginalFilename();// 文件名
-		file.transferTo(new File(dispath + filename));
-		return dispath + filename;
-	}
-
+	
 	/**
 	 * 登录: Ajax提交 ==> Vue
 	 */

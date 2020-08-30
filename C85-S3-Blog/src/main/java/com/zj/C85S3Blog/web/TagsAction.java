@@ -11,10 +11,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zj.C85S3Blog.bean.Category;
 import com.zj.C85S3Blog.bean.Flink;
+import com.zj.C85S3Blog.bean.User;
 import com.zj.C85S3Blog.biz.FlinkBiz;
 import com.zj.C85S3Blog.dao.CategoryMapper;
 import com.zj.C85S3Blog.dao.FlinkMapper;
@@ -32,9 +34,9 @@ public class TagsAction {
 	private FlinkBiz fbiz;
 	
 	@GetMapping("toTags")
-	public ModelAndView toTags(ModelAndView mav) {
+	public ModelAndView toTags(ModelAndView mav,@SessionAttribute("loginedUser")User user) {
 		List<Category>clist=cmapper.selectAll();
-		List<Flink>flist=fmapper.selectAll();
+		List<Flink>flist=fmapper.selectAll(user.getId());
 		mav.addObject("clist", clist);
 		mav.addObject("flist", flist);
 		mav.setViewName("tags");
@@ -43,17 +45,18 @@ public class TagsAction {
 	} 
 	
 	@PostMapping("addFlink.do")
-	public ModelAndView insert(@Valid Flink f,Errors errors,ModelAndView mav) {
+	public ModelAndView insert(@Valid Flink f,Errors errors,ModelAndView mav,@SessionAttribute("loginedUser")User user) {
 		if(errors.hasErrors()) {
 			mav.addObject("errors", Util.asMap(errors));
 			mav.addObject("Flink", f);
 			mav.setViewName("tags");
 		}else {
+			f.setUserid(user.getId());
 			fbiz.insert(f);
 			mav.setViewName("redirect:toTags");
 		}
 		List<Category>clist=cmapper.selectAll();
-		List<Flink>flist=fmapper.selectAll();
+		List<Flink>flist=fmapper.selectAll(user.getId());
 		mav.addObject("clist", clist);
 		mav.addObject("flist", flist);
 		return mav;

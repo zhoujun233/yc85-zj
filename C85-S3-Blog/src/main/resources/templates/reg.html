@@ -19,6 +19,16 @@
 .e{
  color: red;
 }
+#b1 {
+    color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+}
 </style>
 <!--[if gte IE 9]>
   <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
@@ -35,26 +45,31 @@
 	<header class="header" th:replace="index::.header"> </header>
 	<section class="container">
 		<div class="content-wrap">
-			<div class="content">
+			<div class="content" style="background-color: #F8F8FF">
 			
-				<form action="reg.do" method="post" >
+				<form action="reg.do" method="post" style="position: relative;left: 200px">
 				    
 				
-					用户名:<input name="account" th:value="${user}!=null?${user.account}:''">
-					<span class="e" th:if="${errors}!=null" th:text="${errors.get('account')}"></span><br>
+					<span style="font-size: 1.4em">用户名:
+					<span class="e" th:if="${errors}!=null" th:text="${errors.get('account')}"></span></span><br>
+					<input name="account" th:value="${user}!=null?${user.account}:''" style="width: 200px;height: 30px"><br>
 					
-					 姓名:<input name="name" th:value="${user}!=null?${user.name}:''">
-					<span class="e" th:if="${errors}!=null" th:text="${errors.get('name')}"></span><br>
+					 <span style="font-size: 1.4em">姓名:
+					<span class="e" th:if="${errors}!=null" th:text="${errors.get('name')}"></span></span><br>
+					<input name="name" th:value="${user}!=null?${user.name}:''" style="width: 200px;height: 30px"><br>
 					
-					密码:<input name="pwd" type="password" th:value="${user}!=null?${user.pwd}:''">
-					<span class="e" th:if="${errors}!=null" th:text="${errors.get('pwd')}"></span><br>
+					<span style="font-size: 1.4em">密码:
+					<span class="e" th:if="${errors}!=null" th:text="${errors.get('pwd')}"></span></span><br>
+					<input name="pwd" type="password" th:value="${user}!=null?${user.pwd}:''" style="width: 200px;height: 30px"><br>
 					
-					phone:<input name="phone"  th:value="${user}!=null?${user.phone}:''">
-					<span class="e" th:if="${errors}!=null" th:text="${errors.get('phone')}"></span><br>
+					<span style="font-size: 1.4em">phone:
+					<span class="e" th:if="${errors}!=null" th:text="${errors.get('phone')}"></span></span><br>
+					<input name="phone"  th:value="${user}!=null?${user.phone}:''" style="width: 200px;height: 30px"><br>
 					
-					邮箱:<input name="email" th:value="${user}!=null?${user.email}:''">
-					<span class="e" th:if="${errors}!=null" th:text="${errors.get('email')}"></span><br>
-					<button >注册</button>
+					<span style="font-size: 1.4em">邮箱:
+					<span class="e" th:if="${errors}!=null" th:text="${errors.get('email')}"></span></span><br>
+					<input name="email" th:value="${user}!=null?${user.email}:''" style="width: 200px;height: 30px"><br>
+					<button id="b1" style="width: 150px">注册</button>
 				</form>
 			</div>
 		</div>

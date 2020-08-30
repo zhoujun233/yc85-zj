@@ -65,7 +65,7 @@ color: red
     <tr>
     <th style="width: 1200px">
     <ul class="plinks ptags" th:each="f : ${flist}" >
-      <li><a th:href="'http://'+${f.url}" title="" target="_blank" ><span th:text="${f.description}" >这个是标签</span>
+      <li><a th:href="'http://'+${f.url}" title="" target="_blank" ><span th:text="${f.name}" >这个是标签</span>
        </a></li>
     </ul>
     </th>
