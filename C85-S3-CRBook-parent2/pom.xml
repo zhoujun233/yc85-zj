@@ -54,8 +54,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		
+		<!-- 引入 common 工程 -->
+		<dependency>
+			<groupId>com.zj</groupId>
+			<artifactId>C85-S3-CRBook-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- springboot测试依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
 
 	</dependencies>
+	
+	
 
 	
 
