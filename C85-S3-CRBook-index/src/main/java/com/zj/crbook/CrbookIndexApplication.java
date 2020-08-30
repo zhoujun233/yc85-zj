@@ -15,14 +15,14 @@ public class CrbookIndexApplication {
 		SpringApplication.run(CrbookIndexApplication.class, args);
 	}
 
-
 	/**
-	 * 	定义 RestTemplate  Bean
+	 * 定义 RestTemplate Bean
 	 */
-	/*
-	 * @LoadBalanced
-	 * 
-	 * @Bean public RestTemplate getRestTemplate() { return new RestTemplate(); }
-	 */
+
+	@LoadBalanced
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 
 }
