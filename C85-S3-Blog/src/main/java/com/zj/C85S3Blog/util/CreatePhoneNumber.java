@@ -1,5 +1,6 @@
 package com.zj.C85S3Blog.util;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import com.alibaba.fastjson.JSONObject;
@@ -26,12 +27,14 @@ public class CreatePhoneNumber {
 		request.setSysAction("SendSms");
 		
 		Random ram=new Random();
-		int code=1000+ram.nextInt(8999);
+		Object code=1000+ram.nextInt(8999);
 		
 		request.putQueryParameter("PhoneNumbers", toPhone);
-		request.putQueryParameter("SingName", "淘验证");
+		request.putQueryParameter("SignName", "天天商城");
 		request.putQueryParameter("TemplateCode", "SMS_201651730");
-		request.putQueryParameter("TemplateParam", JSONObject.toJSONString(code));
+		HashMap<String,Object>map=new HashMap<>();
+		map.put("code", code);
+		request.putQueryParameter("TemplateParam", JSONObject.toJSONString(map));
 		
 		
 		try {
