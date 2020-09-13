@@ -8,16 +8,17 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.zj.crbook.bean.User;
-import com.zj.crbook.bean.UserExample;
-import com.zj.crbook.dao.UserMapper;
+import com.zj.crbook.bean.CrUser;
+import com.zj.crbook.bean.CrUserExample;
+import com.zj.crbook.dao.CrUserMapper;
+
 
 @SpringBootTest
 public class ApplicationTests  {
 	
 
 	@Resource
-	private UserMapper uMapper;
+	private CrUserMapper uMapper;
 	
 	@Test
 	public void contextLoads() {
@@ -26,13 +27,13 @@ public class ApplicationTests  {
 
 				// 组合条件查询 <if>  ==> Example 对象构建条件
 
-				UserExample ue = new UserExample();
+				CrUserExample ue = new CrUserExample();
 				// == where account='zhangsan' and pwd='111'
 				ue.createCriteria()
 					.andAccountEqualTo("admin")
 					.andPwdEqualTo("111");
 
-				List<User> list = uMapper.selectByExample(ue);
+				List<CrUser> list = uMapper.selectByExample(ue);
 
 				Assert.assertEquals(1, list.size());
 	}
