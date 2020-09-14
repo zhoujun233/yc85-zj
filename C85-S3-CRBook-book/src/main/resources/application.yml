@@ -11,3 +11,12 @@ spring:
     username: root
     password: a
     driver-class-name: com.mysql.jdbc.Driver
+    
+#日志配置
+logging:
+  level:
+    com:
+      zj:
+        C85S3CRBookbook:
+          dao: debug
+          web: warn
