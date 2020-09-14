@@ -28,5 +28,12 @@ public class IndexAction {
 		m.addAttribute("newbooks", nbooks);
 		return "index";
 	}
+	@RequestMapping(path = {"login","login.html"})
+	public String tologin() {
+		
+		
+		return "login";
+	}
+	
 
 }
