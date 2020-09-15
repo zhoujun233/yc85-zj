@@ -47,12 +47,14 @@ public class IndexAction {
 	@PostMapping("login")
 	public String login(@Valid CrUser user, Errors error, Model m) {
 		// 验证用户输入的数据是否正确
+		
 		if (error.hasErrors()) {
 			m.addAttribute("errors", error.getFieldError());
 			return "login";
 		}
 		// 发起远程服务调用， 传递2个参数（用户名，密码）
 		Result res = uaction.login(user);
+		
 		if (res.getCode() == 1) {
 			return index(m);
 		} else {

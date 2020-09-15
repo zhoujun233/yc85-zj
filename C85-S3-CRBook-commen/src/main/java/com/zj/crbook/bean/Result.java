@@ -1,11 +1,19 @@
 package com.zj.crbook.bean;
 
-public class Result {
+public class Result implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int code;
 	private String msg;
 	private Object data;
 	
+	/**
+	 * 	JavaBean 规范 ：一定要定义无参数的构造函数
+	 */
+	public Result() { }
 	
 	public Result(int code, String msg) {
 		super();

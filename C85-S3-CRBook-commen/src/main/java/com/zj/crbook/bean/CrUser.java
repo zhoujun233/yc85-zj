@@ -9,9 +9,9 @@ public class CrUser {
 
     @NotEmpty(message = "账户不能为空")
     private String account;
-    @NotEmpty(message = "密码不能为空")
+    
     private String name;
-
+    @NotEmpty(message = "密码不能为空")
     private String pwd;
 
     private String gender;
