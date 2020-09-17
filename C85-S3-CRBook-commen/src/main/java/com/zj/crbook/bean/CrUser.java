@@ -2,6 +2,7 @@ package com.zj.crbook.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 public class CrUser {
@@ -22,6 +23,8 @@ public class CrUser {
 
     private String phone;
 
+    @Email(message="输入正确的邮箱地址")
+    @NotEmpty(message = "邮箱地址不能为空")
     private String email;
 
     private String school;

@@ -29,8 +29,15 @@ public class UserAction {
 		if(list.isEmpty()) {
 			return new Result(0,"用户名或密码错误");
 		}else {
-			return new Result(1,"登录成功");
+			return new Result(1,"登录成功",list.get(0));
 		}
+		
+	}
+	
+	@PostMapping("register")
+	public Result register(@RequestBody CrUser user) {
+		uMapper.insertSelective(user);
+		return new Result(1,"注册成功",user);
 		
 	}
 

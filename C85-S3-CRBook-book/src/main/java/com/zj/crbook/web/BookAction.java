@@ -6,11 +6,13 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageHelper;
 import com.zj.crbook.bean.CrBook;
 import com.zj.crbook.bean.CrBookExample;
+import com.zj.crbook.bean.CrBookWithBLOBs;
 import com.zj.crbook.bean.CrShow;
 import com.zj.crbook.bean.CrShowExample;
 import com.zj.crbook.dao.CrBookMapper;
@@ -44,6 +46,14 @@ public class BookAction {
 			// 分页查询出前12本书
 			PageHelper.startPage(1, 12);
 			return csm.selectByExample(cse);
+		}
+		
+		
+		@GetMapping("getById")
+		public CrBookWithBLOBs getById(@RequestParam int id){
+			
+			return cbmapper.selectByPrimaryKey(id);
+			
 		}
 
 

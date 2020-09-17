@@ -1066,8 +1066,10 @@
 
 						<div class="content">
 							<div>
-								<span><a href="login.html">[登录]</a><a class="link-regist"
+								<span th:if="${session.loginUser==null}"><a href="login.html">[登录]</a><a class="link-regist"
 									href="register.html">[免费注册]</a></span>
+									<span th:if="${session.loginUser!=null}"><a href="login.html">欢迎</a><span th:text="${session.loginUser.name}"></span><a class="link-regist"
+									href="logout">退出</a></span>
 							</div>
 						</div>
 					</div>
@@ -2664,7 +2666,7 @@
 
 																<div class="views-field views-field-uc-product-image">
 																	<div class="field-content">
-																		<a href="book.html"
+																		<a th:href="'book.html?id='+${r.book.id}"
 																			th:title="${r.book.name}"
 																			target="_blank"><img
 																			th:data-src="${r.book.pic}"
@@ -2699,7 +2701,7 @@
 
 																<div class="views-field views-field-uc-product-image">
 																	<div class="field-content">
-																		<a href="book.html"
+																		<a th:href="'book.html?id='+${r.book.id}"
 																			th:title="${r.book.name}"
 																			target="_blank"><img
 																			th:data-src="${r.book.pic}"
