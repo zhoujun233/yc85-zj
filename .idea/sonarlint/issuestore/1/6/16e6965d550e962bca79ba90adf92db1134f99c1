@@ -1,0 +1,10 @@
+
+p
+java:S14880"[Immediately return this expression instead of assigning it to the temporary variable "str".(Ë«ý=
+W
+java:S1128"ARemove this unused import 'org.springframework.http.HttpRequest'.(ÌÖÁÛ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ˆÀºãýÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¼Çï»ùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(±ÞßÒ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Š³¼öþÿÿÿÿ
+Q	java:S125."<This block of commented-out lines of code should be removed.(¡Å¿æ
